@@ -1,0 +1,15 @@
+//
+//  PrefixHeader.pch
+//  Acount
+//
+//  Created by Sincere on 16/6/16.
+//  Copyright © 2016年 Sincere. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "DSCommon.h"
+#import "Record.h"
+
+#endif /* PrefixHeader_pch */
