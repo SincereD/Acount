@@ -18,4 +18,6 @@
 
 - (NSString*)getMonthDayString;
 
+- (NSString*)getMonthDayStringWithContrastion;
+
 @end

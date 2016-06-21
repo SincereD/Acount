@@ -27,8 +27,31 @@
 {
     _record =record;
     
-    _dateLabel.text = [record.recordDate getHourMinuteString];
-    _timeLabel.text = [record.recordDate getMonthDayString];
+    if (_type == RecordTypeDay)
+    {
+        _todayLabel.text = [record.recordDate  getHourMinuteString];
+        _dateLabel.hidden = YES;
+        _timeLabel.hidden = YES;
+    }
+    else if (_type == RecordTypeWeek)
+    {
+        _dateLabel.text = [record.recordDate getHourMinuteString];
+        _timeLabel.text = [record.recordDate getMonthDayStringWithContrastion];
+        _todayLabel.hidden = YES;
+    }
+    else if (_type == RecordTypeMonth)
+    {
+        _dateLabel.text = [record.recordDate getHourMinuteString];
+        _timeLabel.text = [record.recordDate getMonthDayStringWithContrastion];
+        _todayLabel.hidden = YES;
+    }
+    else
+    {
+        _dateLabel.text = [record.recordDate getHourMinuteString];
+        _timeLabel.text = [record.recordDate getMonthDayString];
+        _todayLabel.hidden = YES;
+    }
+    
     
     _numberLabel.text = [NSString stringWithFormat:@"%.2f",[record.recordNum floatValue]];
     _detailLabel.text = record.detail;

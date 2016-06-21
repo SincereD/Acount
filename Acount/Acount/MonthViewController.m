@@ -85,6 +85,7 @@
         cell= [[[NSBundle mainBundle]loadNibNamed:@"RecordTableViewCell" owner:nil options:nil] firstObject];
     }
     Record * record = _dataSource[indexPath.row];
+    [cell setType:RecordTypeMonth];
     [cell setRecord:record];
     return cell;
 }

@@ -54,4 +54,19 @@
     return dateString;
 }
 
+- (NSString*)getMonthDayStringWithContrastion
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    unsigned int unitFlags = NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitMonth | NSCalendarUnitDay;
+    NSDateComponents * dd = [cal components:unitFlags fromDate:self];
+    NSInteger month = [dd month];
+    NSInteger day = [dd day];
+    NSString * dateString = [NSString stringWithFormat:@"%02d-%02d",(int)month,(int)day];
+    if ([dateString isEqualToString:[[NSDate date] getMonthDayString]])
+    {
+        dateString = @"今天";
+    }
+    return dateString;
+}
+
 @end

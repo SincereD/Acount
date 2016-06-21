@@ -107,7 +107,7 @@
     }
     
     [_inComeLab setText:[NSString stringWithFormat:@"收入：%.2f",_inCome]];
-    [_outComeLab setText:[NSString stringWithFormat:@"收入：%.2f",_outCome]];
+    [_outComeLab setText:[NSString stringWithFormat:@"支出：%.2f",_outCome]];
 }
 
 - (void)leftItem
@@ -183,6 +183,7 @@
         cell.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
     }
     Record * record = _dataSource[indexPath.row];
+    [cell setType:RecordTypeDay];
     [cell setRecord:record];
     return cell;
 }
