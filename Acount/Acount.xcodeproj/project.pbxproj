@@ -11,6 +11,8 @@
 		C61D86371D12A2F1009126D0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61D86351D12A2F1009126D0 /* RecordViewController.m */; };
 		C61D86381D12A2F1009126D0 /* RecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C61D86361D12A2F1009126D0 /* RecordViewController.xib */; };
 		C69FD0631D13CEAB00740465 /* UIImage+DSColorForImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C69FD0621D13CEAB00740465 /* UIImage+DSColorForImage.m */; };
+		C6C82FDB1D192FC400EF9C93 /* TotalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C82FD91D192FC400EF9C93 /* TotalRecordViewController.m */; };
+		C6C82FDC1D192FC400EF9C93 /* TotalRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C82FDA1D192FC400EF9C93 /* TotalRecordViewController.xib */; };
 		C6D4E24A1D118BBA00D3004D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D4E2491D118BBA00D3004D /* main.m */; };
 		C6D4E24D1D118BBA00D3004D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D4E24C1D118BBA00D3004D /* AppDelegate.m */; };
 		C6D4E2531D118BBA00D3004D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6D4E2511D118BBA00D3004D /* Main.storyboard */; };
@@ -49,6 +51,9 @@
 		C61D86361D12A2F1009126D0 /* RecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordViewController.xib; sourceTree = "<group>"; };
 		C69FD0611D13CEAB00740465 /* UIImage+DSColorForImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DSColorForImage.h"; sourceTree = "<group>"; };
 		C69FD0621D13CEAB00740465 /* UIImage+DSColorForImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSColorForImage.m"; sourceTree = "<group>"; };
+		C6C82FD81D192FC400EF9C93 /* TotalRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalRecordViewController.h; sourceTree = "<group>"; };
+		C6C82FD91D192FC400EF9C93 /* TotalRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalRecordViewController.m; sourceTree = "<group>"; };
+		C6C82FDA1D192FC400EF9C93 /* TotalRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TotalRecordViewController.xib; sourceTree = "<group>"; };
 		C6D4E2451D118BBA00D3004D /* Acount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acount.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D4E2491D118BBA00D3004D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C6D4E24B1D118BBA00D3004D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -169,6 +174,9 @@
 				C6D4E29F1D129D7D00D3004D /* MonthViewController.m */,
 				C6D4E2A11D129D8600D3004D /* WeekViewController.h */,
 				C6D4E2A21D129D8600D3004D /* WeekViewController.m */,
+				C6C82FD81D192FC400EF9C93 /* TotalRecordViewController.h */,
+				C6C82FD91D192FC400EF9C93 /* TotalRecordViewController.m */,
+				C6C82FDA1D192FC400EF9C93 /* TotalRecordViewController.xib */,
 				C61D86341D12A2F1009126D0 /* RecordViewController.h */,
 				C61D86351D12A2F1009126D0 /* RecordViewController.m */,
 				C61D86361D12A2F1009126D0 /* RecordViewController.xib */,
@@ -297,6 +305,7 @@
 			files = (
 				C6D4E25B1D118BBA00D3004D /* LaunchScreen.storyboard in Resources */,
 				C6D4E2581D118BBA00D3004D /* Assets.xcassets in Resources */,
+				C6C82FDC1D192FC400EF9C93 /* TotalRecordViewController.xib in Resources */,
 				C6D4E2531D118BBA00D3004D /* Main.storyboard in Resources */,
 				C6F3A2DD1D13DFD1005A8BD0 /* RecordTableViewCell.xib in Resources */,
 				C61D86381D12A2F1009126D0 /* RecordViewController.xib in Resources */,
@@ -377,6 +386,7 @@
 				C6D4E2891D124B5600D3004D /* DSRequest.m in Sources */,
 				C69FD0631D13CEAB00740465 /* UIImage+DSColorForImage.m in Sources */,
 				C6D4E2661D118C2A00D3004D /* Record+CoreDataProperties.m in Sources */,
+				C6C82FDB1D192FC400EF9C93 /* TotalRecordViewController.m in Sources */,
 				C6D4E2921D124B5600D3004D /* DSWelcomViewController.m in Sources */,
 				C6D4E28B1D124B5600D3004D /* UIImage+DSImageColor.m in Sources */,
 				C6D4E28A1D124B5600D3004D /* DSDevice.m in Sources */,

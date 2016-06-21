@@ -10,17 +10,17 @@
 
 @implementation RecordTableViewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
-    // Initialization code
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [_typeLabel.layer setCornerRadius:20.0f];
     [_typeLabel.layer setMasksToBounds:YES];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
-
 }
 
 - (void)setRecord:(Record *)record
@@ -51,7 +51,6 @@
         _timeLabel.text = [record.recordDate getMonthDayString];
         _todayLabel.hidden = YES;
     }
-    
     
     _numberLabel.text = [NSString stringWithFormat:@"%.2f",[record.recordNum floatValue]];
     _detailLabel.text = record.detail;

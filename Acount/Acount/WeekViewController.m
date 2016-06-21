@@ -9,6 +9,7 @@
 #import "WeekViewController.h"
 #import "RecordTableViewCell.h"
 #import "RecordDataOperation.h"
+#import "TotalRecordViewController.h"
 
 @interface WeekViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,retain) UITableView * table;
@@ -34,11 +35,27 @@
     _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getWeekDataSourceWithYear:weekDict[@"year"] month:weekDict[@"month"] week:weekDict[@"week"]]];
     
     [self reloadTableView];
+    
+    [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
+    [self becomeFirstResponder];
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (event.subtype == UIEventSubtypeMotionShake)
+    {
+        TotalRecordViewController * totalVC = [[TotalRecordViewController alloc] init];
+        [totalVC setRecordArray:_dataSource];
+        [self presentViewController:totalVC animated:YES completion:^{
+            
+        }];
+    }
+    return;
 }
 
 - (void)tableView
 {
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, _dataSource.count*60) style:UITableViewStylePlain];
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, _dataSource.count*60 + 30) style:UITableViewStylePlain];
     [_table setDelegate:self];
     [_table setDataSource:self];
     [self.view addSubview:_table];
@@ -49,7 +66,7 @@
     CGFloat height = 0;
     if (_dataSource && _dataSource.count != 0)
     {
-        height = _dataSource.count * 60;
+        height = _dataSource.count * 60 + 30;
     }
     else
     {
@@ -72,7 +89,6 @@
     }
     [_table setFrame:CGRectMake(0, 64, kScreenWidth, height)];
     [_table reloadData];
-    NSLog(@"%@",_table);
 }
 
 # pragma mark TableView Delegate
@@ -124,6 +140,16 @@
 - (NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return @"删除";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30.0f;
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @" 😏 Shake It ？";
 }
 
 
