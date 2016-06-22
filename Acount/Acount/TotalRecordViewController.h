@@ -10,8 +10,6 @@
 
 @interface TotalRecordViewController : UIViewController
 
-- (IBAction)dismissAction:(id)sender;
-
 @property (nonatomic,copy) NSArray * recordArray;
 
 @end

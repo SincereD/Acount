@@ -131,7 +131,7 @@
         [label setCenter:CGPointMake(kScreenWidth/2.0f, kScreenHeight/2.0f)];
         [self.view addSubview:label];
         
-        [UIView animateWithDuration:0.80f animations:^{
+        [UIView animateWithDuration:0.80f delay:i * 0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [label setCenter:aPoint];
         } completion:^(BOOL finished) {
             
@@ -143,29 +143,52 @@
 {
     if (event.subtype == UIEventSubtypeMotionShake)
     {
+        NSInteger i = -1;
         for (UIView * view in [self.view subviews])
         {
             if ([view isKindOfClass:[UILabel class]])
             {
-                [UIView animateWithDuration:0.8f animations:^{
+                i++;
+                
+                [UIView animateWithDuration:0.80f delay:i*0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     [view setCenter:CGPointMake(kScreenWidth/2.0f, kScreenHeight/2.0f)];
                 } completion:^(BOOL finished) {
-                    
+                
                 }];
             }
+        }
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
+}
+
+- (void)dismissAction:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    NSInteger i = -1;
+    for (UIView * view in [self.view subviews])
+    {
+        if ([view isKindOfClass:[UILabel class]])
+        {
+            i++;
+            [UIView animateWithDuration:0.80f delay:i*0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [view setCenter:CGPointMake(kScreenWidth/2.0f, kScreenHeight/2.0f)];
+            } completion:^(BOOL finished) {
+                
+            }];
         }
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     });
-    return;
-}
-
-- (IBAction)dismissAction:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 @end
