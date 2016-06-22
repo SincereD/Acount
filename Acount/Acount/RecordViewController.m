@@ -9,7 +9,7 @@
 #import "RecordViewController.h"
 #import "RecordDataOperation.h"
 
-@interface RecordViewController ()
+@interface RecordViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -18,6 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_ensureBtn.layer setCornerRadius:40.0f];
+    [_ensureBtn.layer setMasksToBounds:YES];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -44,9 +46,12 @@
     
     if ([[RecordDataOperation sharedDataOperation] insertCoreDataWithRecord:[self getRecord]])
     {
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        [self.view endEditing:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
+        });
     }
     else
     {
@@ -83,7 +88,6 @@
         cost = -cost;
     }
     NSDate * date = [NSDate date];
-    
     NSCalendar *cal = [NSCalendar currentCalendar];
     unsigned int unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfMonth;
     NSDateComponents * dd = [cal components:unitFlags fromDate:date];
@@ -100,9 +104,6 @@
     [record setValue:date forKey:@"recordDate"];
     [record setValue:_recordTypeSwitch.isOn?@"收入":@"支出" forKey:@"recordType"];
     [record setValue:_detailTF.text forKey:@"detail"];
-    
-    NSLog(@"%d",(int)year);
-    
     return record;
 }
 
@@ -112,6 +113,41 @@
     
     BOOL number = _recordNumTF.text && ![_recordNumTF.text isEqualToString:@""];
     return detail && number;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (!_recordNumTF.text || [_recordNumTF.text isEqualToString:@""])
+    {
+        if (textField == _detailTF)
+        {
+            return NO;
+        }
+        [_recordNumTF becomeFirstResponder];
+    }
+    else if (!_detailTF.text || [_detailTF.text isEqualToString:@""])
+    {
+        if (textField == _detailTF) {
+            return NO;
+        }
+        [_detailTF becomeFirstResponder];
+    }
+    else
+    {
+        [self ensureAction:nil];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    if (_detailTF.text && _recordNumTF.text && ![_detailTF.text isEqualToString:@""] && ![_recordNumTF.text isEqualToString:@""])
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            _ensureBtn.alpha = 1.0f;
+        }];
+    }
+    return YES;
 }
 
 @end

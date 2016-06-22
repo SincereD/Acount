@@ -9,6 +9,7 @@
 #import "MonthViewController.h"
 #import "RecordTableViewCell.h"
 #import "RecordDataOperation.h"
+#import "TotalRecordViewController.h"
 
 @interface MonthViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,retain) UITableView * table;
@@ -30,22 +31,37 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     NSDictionary * weekDict = [[NSDate date] getMonthYearWeek];
     _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getMonthDataSourceWithYear:weekDict[@"year"] month:weekDict[@"month"]]];
     [self reloadTableView];
+    
+    [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
+    [self becomeFirstResponder];
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (event.subtype == UIEventSubtypeMotionShake)
+    {
+        TotalRecordViewController * totalVC = [[TotalRecordViewController alloc] init];
+        [totalVC setRecordArray:_dataSource];
+        [self presentViewController:totalVC animated:YES completion:^{
+            
+        }];
+    }
+    return;
 }
 
 - (void)tableView
 {
-
     _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, 60*7) style:UITableViewStylePlain];
     [_table setDelegate:self];
     [_table setDataSource:self];
     [self.view addSubview:_table];
-    
 }
 
-- (void)reloadTableView
+- (CGFloat)tableHeight
 {
     CGFloat height = 0;
     if (_dataSource && _dataSource.count != 0)
@@ -54,12 +70,7 @@
     }
     else
     {
-        [UIView animateWithDuration:0.5 animations:^{
-            [_table setFrame:CGRectMake(0, 64, kScreenWidth, height)];
-        } completion:^(BOOL finished) {
-            [_table reloadData];
-        }];
-        return;
+        return 0;
     }
     
     if (height > (kScreenHeight-64))
@@ -71,7 +82,17 @@
     {
         [_table setScrollEnabled:NO];
     }
-    [_table setFrame:CGRectMake(0, 64, kScreenWidth, height)];
+    return height;
+}
+
+- (void)clickView
+{
+    
+}
+
+- (void)reloadTableView
+{
+    [_table setFrame:CGRectMake(0, 64, kScreenWidth, [self tableHeight])];
     [_table reloadData];
 }
 
@@ -111,8 +132,8 @@
 {
     [[RecordDataOperation sharedDataOperation] deleteCoreDataWithRecord:_dataSource[indexPath.row]];
     [_dataSource removeObjectAtIndex:indexPath.row];
-    [_table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-    [self reloadTableView];
+    [_table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [_table setFrame:CGRectMake(0, 64, kScreenWidth, [self tableHeight])];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *recordTypeLab;
 
 - (IBAction)backAction:(id)sender;
-- (IBAction)ensureAction:(id)sender;
 - (IBAction)switchAction:(UISwitch *)sender;
 
 @end

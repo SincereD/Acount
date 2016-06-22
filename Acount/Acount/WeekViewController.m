@@ -33,9 +33,7 @@
     [super viewWillAppear:animated];
     NSDictionary * weekDict = [[NSDate date] getMonthYearWeek];
     _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getWeekDataSourceWithYear:weekDict[@"year"] month:weekDict[@"month"] week:weekDict[@"week"]]];
-    
     [self reloadTableView];
-    
     [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
     [self becomeFirstResponder];
 }
@@ -59,6 +57,37 @@
     [_table setDelegate:self];
     [_table setDataSource:self];
     [self.view addSubview:_table];
+}
+
+- (CGFloat)tableHeight
+{
+    CGFloat height = 0;
+    if (_dataSource && _dataSource.count != 0)
+    {
+        height = _dataSource.count * 60;
+    }
+    else
+    {
+        return 0;
+    }
+    
+    if (height > (kScreenHeight-64))
+    {
+        height=kScreenHeight-64;
+        [_table setScrollEnabled:YES];
+    }
+    else
+    {
+        [_table setScrollEnabled:NO];
+    }
+    return height;
+}
+
+- (void)resetTableHeight
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        [_table setFrame:CGRectMake(0, 64, kScreenWidth, [self tableHeight])];
+    }];
 }
 
 - (void)reloadTableView
@@ -115,7 +144,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%d",(int)_dataSource.count);
     return _dataSource.count;
 }
 
@@ -128,8 +156,8 @@
 {
     [[RecordDataOperation sharedDataOperation] deleteCoreDataWithRecord:_dataSource[indexPath.row]];
     [_dataSource removeObjectAtIndex:indexPath.row];
-    [_table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-    [self reloadTableView];
+    [_table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self resetTableHeight];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

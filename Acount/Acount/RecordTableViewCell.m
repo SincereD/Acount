@@ -35,14 +35,14 @@
     }
     else if (_type == RecordTypeWeek)
     {
-        _dateLabel.text = [record.recordDate getHourMinuteString];
-        _timeLabel.text = [record.recordDate getMonthDayStringWithContrastion];
+        _dateLabel.text = [record.recordDate getWeekDayWithContrastion];
+        _timeLabel.text = [record.recordDate getHourMinuteString];
         _todayLabel.hidden = YES;
     }
     else if (_type == RecordTypeMonth)
     {
-        _dateLabel.text = [record.recordDate getHourMinuteString];
-        _timeLabel.text = [record.recordDate getMonthDayStringWithContrastion];
+        _dateLabel.text = [record.recordDate getMonthDayStringWithContrastion];
+        _timeLabel.text = [record.recordDate getWeekDay];
         _todayLabel.hidden = YES;
     }
     else

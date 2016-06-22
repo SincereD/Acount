@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [NSThread sleepForTimeInterval:2.0f];
+    [NSThread sleepForTimeInterval:1.0f];
     return YES;
 }
 
@@ -74,16 +74,7 @@
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *record in fetchedObjects)
-    {
-        NSLog(@"****************");
-        NSLog(@"recordNum:%@", [record valueForKey:@"recordNum"]);
-        NSLog(@"recordDate:%@", [record valueForKey:@"recordDate"]);
-        NSLog(@"recordType:%@", [record valueForKey:@"recordType"]);
-        NSLog(@"recordType:%@", [record valueForKey:@"year"]);
-        NSLog(@"recordType:%@", [record valueForKey:@"month"]);
-        NSLog(@"recordType:%@", [record valueForKey:@"week"]);
-    }
+    NSLog(@"FetchedObjects:%@",fetchedObjects);
 }
 
 @synthesize managedObjectContext = _managedObjectContext;

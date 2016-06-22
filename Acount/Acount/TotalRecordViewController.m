@@ -30,14 +30,18 @@
    
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self configureNum];
+    [self calculate];
+    [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
+    [self becomeFirstResponder];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
-    [self becomeFirstResponder];
-    
-    [self configureNum];
-    [self calculate];
     [self configureView];
 }
 

@@ -140,6 +140,63 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C6C82FDD1D1A6DE500EF9C93 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C6D4E2681D12463E00D3004D /* MainInterfaceViewController.h */,
+				C6D4E2691D12463E00D3004D /* MainInterfaceViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		C6C82FDE1D1A6DF400EF9C93 /* Month */ = {
+			isa = PBXGroup;
+			children = (
+				C6D4E29E1D129D7D00D3004D /* MonthViewController.h */,
+				C6D4E29F1D129D7D00D3004D /* MonthViewController.m */,
+			);
+			name = Month;
+			sourceTree = "<group>";
+		};
+		C6C82FDF1D1A6DFE00EF9C93 /* Week */ = {
+			isa = PBXGroup;
+			children = (
+				C6D4E2A11D129D8600D3004D /* WeekViewController.h */,
+				C6D4E2A21D129D8600D3004D /* WeekViewController.m */,
+			);
+			name = Week;
+			sourceTree = "<group>";
+		};
+		C6C82FE01D1A6E0D00EF9C93 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C6F3A2D91D13DFD1005A8BD0 /* RecordTableViewCell.h */,
+				C6F3A2DA1D13DFD1005A8BD0 /* RecordTableViewCell.m */,
+				C6F3A2DB1D13DFD1005A8BD0 /* RecordTableViewCell.xib */,
+				C6C82FD81D192FC400EF9C93 /* TotalRecordViewController.h */,
+				C6C82FD91D192FC400EF9C93 /* TotalRecordViewController.m */,
+				C6C82FDA1D192FC400EF9C93 /* TotalRecordViewController.xib */,
+				C61D86341D12A2F1009126D0 /* RecordViewController.h */,
+				C61D86351D12A2F1009126D0 /* RecordViewController.m */,
+				C61D86361D12A2F1009126D0 /* RecordViewController.xib */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		C6C82FE11D1A6E2800EF9C93 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C6D4E2541D118BBA00D3004D /* Acount.xcdatamodeld */,
+				C6D4E2951D12765600D3004D /* RecordDataOperation.h */,
+				C6D4E2961D12765600D3004D /* RecordDataOperation.m */,
+				C6D4E2621D118C2A00D3004D /* Record+CoreDataProperties.h */,
+				C6D4E2631D118C2A00D3004D /* Record+CoreDataProperties.m */,
+				C6D4E2641D118C2A00D3004D /* Record.h */,
+				C6D4E2651D118C2A00D3004D /* Record.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		C6D4E23C1D118BBA00D3004D = {
 			isa = PBXGroup;
 			children = (
@@ -162,33 +219,11 @@
 			isa = PBXGroup;
 			children = (
 				C6D4E26B1D12495400D3004D /* DSCommom */,
-				C6D4E2941D124B6F00D3004D /* PrefixHeader.pch */,
-				C6D4E2951D12765600D3004D /* RecordDataOperation.h */,
-				C6D4E2961D12765600D3004D /* RecordDataOperation.m */,
-				C6F3A2D91D13DFD1005A8BD0 /* RecordTableViewCell.h */,
-				C6F3A2DA1D13DFD1005A8BD0 /* RecordTableViewCell.m */,
-				C6F3A2DB1D13DFD1005A8BD0 /* RecordTableViewCell.xib */,
-				C6D4E2681D12463E00D3004D /* MainInterfaceViewController.h */,
-				C6D4E2691D12463E00D3004D /* MainInterfaceViewController.m */,
-				C6D4E29E1D129D7D00D3004D /* MonthViewController.h */,
-				C6D4E29F1D129D7D00D3004D /* MonthViewController.m */,
-				C6D4E2A11D129D8600D3004D /* WeekViewController.h */,
-				C6D4E2A21D129D8600D3004D /* WeekViewController.m */,
-				C6C82FD81D192FC400EF9C93 /* TotalRecordViewController.h */,
-				C6C82FD91D192FC400EF9C93 /* TotalRecordViewController.m */,
-				C6C82FDA1D192FC400EF9C93 /* TotalRecordViewController.xib */,
-				C61D86341D12A2F1009126D0 /* RecordViewController.h */,
-				C61D86351D12A2F1009126D0 /* RecordViewController.m */,
-				C61D86361D12A2F1009126D0 /* RecordViewController.xib */,
-				C6D4E2511D118BBA00D3004D /* Main.storyboard */,
-				C6D4E2571D118BBA00D3004D /* Assets.xcassets */,
-				C6D4E2591D118BBA00D3004D /* LaunchScreen.storyboard */,
-				C6D4E25C1D118BBA00D3004D /* Info.plist */,
-				C6D4E2541D118BBA00D3004D /* Acount.xcdatamodeld */,
-				C6D4E2621D118C2A00D3004D /* Record+CoreDataProperties.h */,
-				C6D4E2631D118C2A00D3004D /* Record+CoreDataProperties.m */,
-				C6D4E2641D118C2A00D3004D /* Record.h */,
-				C6D4E2651D118C2A00D3004D /* Record.m */,
+				C6C82FE11D1A6E2800EF9C93 /* Data */,
+				C6C82FDD1D1A6DE500EF9C93 /* Main */,
+				C6C82FDE1D1A6DF400EF9C93 /* Month */,
+				C6C82FDF1D1A6DFE00EF9C93 /* Week */,
+				C6C82FE01D1A6E0D00EF9C93 /* Common */,
 				C6D4E2481D118BBA00D3004D /* Supporting Files */,
 			);
 			path = Acount;
@@ -197,9 +232,14 @@
 		C6D4E2481D118BBA00D3004D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C6D4E2941D124B6F00D3004D /* PrefixHeader.pch */,
 				C6D4E24B1D118BBA00D3004D /* AppDelegate.h */,
 				C6D4E24C1D118BBA00D3004D /* AppDelegate.m */,
 				C6D4E2491D118BBA00D3004D /* main.m */,
+				C6D4E2511D118BBA00D3004D /* Main.storyboard */,
+				C6D4E2571D118BBA00D3004D /* Assets.xcassets */,
+				C6D4E2591D118BBA00D3004D /* LaunchScreen.storyboard */,
+				C6D4E25C1D118BBA00D3004D /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

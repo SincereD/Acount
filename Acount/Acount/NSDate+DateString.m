@@ -32,6 +32,35 @@
     return @{@"year":year,@"month":month,@"week":week};
 }
 
+- (NSString*)getWeekDay
+{
+    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierChinese];
+    unsigned int unitFlags = NSCalendarUnitWeekday;
+    NSDateComponents * dd = [cal components:unitFlags fromDate:self];
+    NSInteger weekDay = [dd weekday];
+    return [self getWeekDayStringWithInterger:weekDay];
+}
+
+- (NSString*)getWeekDayWithContrastion
+{
+    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierChinese];
+    unsigned int unitFlags = NSCalendarUnitWeekday;
+    NSDateComponents * dd = [cal components:unitFlags fromDate:self];
+    NSInteger weekDay = [dd weekday];
+    NSString * weekDayStr = [self getWeekDayStringWithInterger:weekDay];
+    if ([weekDayStr isEqualToString:[[NSDate date] getWeekDay]])
+    {
+        return @"今天";
+    }
+    return weekDayStr;
+}
+
+- (NSString*)getWeekDayStringWithInterger:(NSInteger)interger
+{
+    NSArray * weekDayArray = @[[NSNull null],@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"];
+    return weekDayArray[interger];
+}
+
 - (NSString*)getHourMinuteString
 {
     NSCalendar *cal = [NSCalendar currentCalendar];

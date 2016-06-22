@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordViewController">
             <connections>
                 <outlet property="detailTF" destination="EbJ-N3-D0C" id="TuA-mC-p1j"/>
-                <outlet property="ensureBtn" destination="tVL-gb-qfi" id="7Yz-aP-BDH"/>
+                <outlet property="ensureBtn" destination="ALK-qh-4t9" id="Mnz-j6-HGf"/>
                 <outlet property="recordNumTF" destination="Upc-1G-oow" id="wQE-TW-Oa0"/>
                 <outlet property="recordTypeLab" destination="kG9-mv-PPZ" id="l2m-uA-G99"/>
                 <outlet property="recordTypeSwitch" destination="Iok-Ii-LVk" id="31n-dB-JyZ"/>
@@ -81,7 +81,10 @@
                         <constraint firstAttribute="height" constant="30" id="ur7-Yh-Glf"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="ExA-TH-nfw"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="😱不要太长哦" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EbJ-N3-D0C">
                     <rect key="frame" x="162" y="244" width="100" height="30"/>
@@ -90,7 +93,10 @@
                         <constraint firstAttribute="width" constant="100" id="ttg-Ip-NuI"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="pK5-in-EtJ"/>
+                    </connections>
                 </textField>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iok-Ii-LVk">
                     <rect key="frame" x="162" y="115" width="51" height="31"/>
@@ -103,28 +109,29 @@
                         <action selector="switchAction:" destination="-1" eventType="valueChanged" id="9Lq-FL-67I"/>
                     </connections>
                 </switch>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVL-gb-qfi">
-                    <rect key="frame" x="65" y="24" width="40" height="40"/>
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALK-qh-4t9">
+                    <rect key="frame" x="120" y="413" width="80" height="80"/>
+                    <color key="backgroundColor" red="0.50196078430000002" green="0.25098039220000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="QYj-Ad-RdS"/>
-                        <constraint firstAttribute="height" constant="40" id="gPu-p8-AiW"/>
+                        <constraint firstAttribute="width" constant="80" id="KeT-4f-qnR"/>
+                        <constraint firstAttribute="height" constant="80" id="vGO-YT-BeE"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <state key="normal" title="提交">
-                        <color key="titleColor" red="0.50196078430000002" green="0.25098039220000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="ensureAction:" destination="-1" eventType="touchUpInside" id="5ek-85-IZe"/>
+                        <action selector="ensureAction:" destination="-1" eventType="touchUpInside" id="rnh-OE-Zfu"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="tVL-gb-qfi" firstAttribute="leading" secondItem="Jaw-3K-79b" secondAttribute="trailing" constant="15" id="2F5-N6-aqR"/>
                 <constraint firstItem="Jaw-3K-79b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="An5-jU-530"/>
                 <constraint firstItem="kG9-mv-PPZ" firstAttribute="leading" secondItem="Hdf-0A-OaV" secondAttribute="trailing" constant="14" id="BKi-WS-Qi3"/>
                 <constraint firstItem="TZB-c7-kXB" firstAttribute="top" secondItem="kG9-mv-PPZ" secondAttribute="bottom" constant="38" id="BPM-V2-5dt"/>
                 <constraint firstItem="EbJ-N3-D0C" firstAttribute="leading" secondItem="fGh-j0-Kmx" secondAttribute="trailing" constant="15" id="Ez6-0F-fC5"/>
+                <constraint firstItem="ALK-qh-4t9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PfK-xY-bj0"/>
                 <constraint firstItem="Upc-1G-oow" firstAttribute="top" secondItem="Iok-Ii-LVk" secondAttribute="bottom" constant="33" id="SjI-Vh-JSK"/>
                 <constraint firstItem="fGh-j0-Kmx" firstAttribute="leading" secondItem="Hdf-0A-OaV" secondAttribute="trailing" constant="14" id="T0H-br-FsC"/>
                 <constraint firstItem="fGh-j0-Kmx" firstAttribute="top" secondItem="TZB-c7-kXB" secondAttribute="bottom" constant="44" id="T6G-KK-MdE"/>
@@ -134,7 +141,7 @@
                 <constraint firstItem="Iok-Ii-LVk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="115" id="b7B-mJ-wyb"/>
                 <constraint firstItem="TZB-c7-kXB" firstAttribute="leading" secondItem="Hdf-0A-OaV" secondAttribute="trailing" constant="14" id="fue-sK-pRk"/>
                 <constraint firstItem="Hdf-0A-OaV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="19" id="iUv-Po-wrk"/>
-                <constraint firstItem="tVL-gb-qfi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="lG5-wj-pcH"/>
+                <constraint firstAttribute="bottom" secondItem="ALK-qh-4t9" secondAttribute="bottom" constant="75" id="sUj-hC-kVJ"/>
                 <constraint firstItem="kG9-mv-PPZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="117" id="uER-02-qgi"/>
                 <constraint firstItem="Jaw-3K-79b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="x4B-lm-rVB"/>
                 <constraint firstItem="Upc-1G-oow" firstAttribute="leading" secondItem="TZB-c7-kXB" secondAttribute="trailing" constant="8" id="yvo-D3-Cfm"/>

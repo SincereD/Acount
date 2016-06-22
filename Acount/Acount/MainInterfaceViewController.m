@@ -32,30 +32,56 @@
     [self.navigationController.navigationBar setTintColor:[UIColor brownColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor brownColor]}];
     
+    _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getTotadyData]];
+   
     [self leftItem];
     [self rightItem];
     [self tableView];
+    [self configureFee];
 }
 
 - (void)viewWillAppear:(BOOL)animated
-
 {
     [super viewWillAppear:animated];
     
-    _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getTotadyData]];
-    [self configureFee];
-    [self reloadTableView];
+    NSArray * dataArry = [[RecordDataOperation sharedDataOperation] getTotadyData];
+    if (!_dataSource)
+    {
+        _dataSource = [NSMutableArray arrayWithArray:dataArry];
+    }
+    else
+    {
+        if (_dataSource.count != dataArry.count)
+        {
+            _dataSource = [NSMutableArray arrayWithArray:dataArry];
+            [_table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            [self resetTableHeight];
+            [self configureFee];
+        }
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
 - (void)tableView
 {
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, kScreenWidth, 64, 0) style:UITableViewStylePlain];
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, [self tableHeight]) style:UITableViewStylePlain];
     [_table setDelegate:self];
     [_table setDataSource:self];
     [self.view addSubview:_table];
+    [self tableHeight];
 }
 
-- (void)reloadTableView
+- (void)coreDataChange:(NSNotification*)notification
+{
+    _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getTotadyData]];
+    [self configureFee];
+}
+
+- (CGFloat)tableHeight
 {
     CGFloat height = 0;
     if (_dataSource && _dataSource.count != 0)
@@ -64,12 +90,7 @@
     }
     else
     {
-        [UIView animateWithDuration:0.5 animations:^{
-            [_table setFrame:CGRectMake(0, 64, kScreenWidth, height)];
-        } completion:^(BOOL finished) {
-            [_table reloadData];
-        }];
-        return;
+        return 0;
     }
     
     if (height > (kScreenHeight-64-100))
@@ -81,11 +102,13 @@
     {
         [_table setScrollEnabled:NO];
     }
-    
+    return height;
+}
+
+- (void)resetTableHeight
+{
     [UIView animateWithDuration:0.5 animations:^{
-        [_table setFrame:CGRectMake(0, 64, kScreenWidth, height)];
-    } completion:^(BOOL finished) {
-        [_table reloadData];
+        [_table setFrame:CGRectMake(0, 64, kScreenWidth, [self tableHeight])];
     }];
 }
 
@@ -214,9 +237,9 @@
 {
     [[RecordDataOperation sharedDataOperation] deleteCoreDataWithRecord:_dataSource[indexPath.row]];
     [_dataSource removeObjectAtIndex:indexPath.row];
-    [_table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [_table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self resetTableHeight];
     [self configureFee];
-    [self reloadTableView];
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
