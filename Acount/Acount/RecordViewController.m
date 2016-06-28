@@ -22,6 +22,12 @@
     [_ensureBtn.layer setMasksToBounds:YES];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [_recordNumTF becomeFirstResponder];
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
