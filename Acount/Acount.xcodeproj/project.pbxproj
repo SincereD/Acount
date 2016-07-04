@@ -38,6 +38,15 @@
 		C6D4E2971D12765600D3004D /* RecordDataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D4E2961D12765600D3004D /* RecordDataOperation.m */; };
 		C6D4E2A01D129D7D00D3004D /* MonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D4E29F1D129D7D00D3004D /* MonthViewController.m */; };
 		C6D4E2A31D129D8600D3004D /* WeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D4E2A21D129D8600D3004D /* WeekViewController.m */; };
+		C6F30D8F1D225F3F004D9EB1 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F30D841D225F3F004D9EB1 /* UUBar.m */; };
+		C6F30D901D225F3F004D9EB1 /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F30D861D225F3F004D9EB1 /* UUBarChart.m */; };
+		C6F30D911D225F3F004D9EB1 /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F30D881D225F3F004D9EB1 /* UUChart.m */; };
+		C6F30D921D225F3F004D9EB1 /* UUChartConst.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F30D8A1D225F3F004D9EB1 /* UUChartConst.m */; };
+		C6F30D931D225F3F004D9EB1 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F30D8C1D225F3F004D9EB1 /* UUChartLabel.m */; };
+		C6F30D941D225F3F004D9EB1 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F30D8E1D225F3F004D9EB1 /* UULineChart.m */; };
+		C6F30D981D225F55004D9EB1 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F30D971D225F55004D9EB1 /* XYPieChart.m */; };
+		C6F30D9A1D22654D004D9EB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F30D991D22654D004D9EB1 /* CoreGraphics.framework */; };
+		C6F30D9C1D2265A1004D9EB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F30D9B1D2265A1004D9EB1 /* QuartzCore.framework */; };
 		C6F3A2DC1D13DFD1005A8BD0 /* RecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F3A2DA1D13DFD1005A8BD0 /* RecordTableViewCell.m */; };
 		C6F3A2DD1D13DFD1005A8BD0 /* RecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6F3A2DB1D13DFD1005A8BD0 /* RecordTableViewCell.xib */; };
 		C6F3A2E01D141AC9005A8BD0 /* NSDate+DateString.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F3A2DF1D141AC9005A8BD0 /* NSDate+DateString.m */; };
@@ -103,6 +112,22 @@
 		C6D4E29F1D129D7D00D3004D /* MonthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthViewController.m; sourceTree = "<group>"; };
 		C6D4E2A11D129D8600D3004D /* WeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekViewController.h; sourceTree = "<group>"; };
 		C6D4E2A21D129D8600D3004D /* WeekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekViewController.m; sourceTree = "<group>"; };
+		C6F30D831D225F3F004D9EB1 /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
+		C6F30D841D225F3F004D9EB1 /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
+		C6F30D851D225F3F004D9EB1 /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
+		C6F30D861D225F3F004D9EB1 /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
+		C6F30D871D225F3F004D9EB1 /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
+		C6F30D881D225F3F004D9EB1 /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
+		C6F30D891D225F3F004D9EB1 /* UUChartConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartConst.h; sourceTree = "<group>"; };
+		C6F30D8A1D225F3F004D9EB1 /* UUChartConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartConst.m; sourceTree = "<group>"; };
+		C6F30D8B1D225F3F004D9EB1 /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
+		C6F30D8C1D225F3F004D9EB1 /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
+		C6F30D8D1D225F3F004D9EB1 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
+		C6F30D8E1D225F3F004D9EB1 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
+		C6F30D961D225F55004D9EB1 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
+		C6F30D971D225F55004D9EB1 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
+		C6F30D991D22654D004D9EB1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C6F30D9B1D2265A1004D9EB1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C6F3A2D91D13DFD1005A8BD0 /* RecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordTableViewCell.h; sourceTree = "<group>"; };
 		C6F3A2DA1D13DFD1005A8BD0 /* RecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordTableViewCell.m; sourceTree = "<group>"; };
 		C6F3A2DB1D13DFD1005A8BD0 /* RecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordTableViewCell.xib; sourceTree = "<group>"; };
@@ -116,6 +141,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6F30D9C1D2265A1004D9EB1 /* QuartzCore.framework in Frameworks */,
+				C6F30D9A1D22654D004D9EB1 /* CoreGraphics.framework in Frameworks */,
 				6AAB4D635FCA5E63BEFCC1F0 /* libPods-Acount.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +162,8 @@
 		BC8BE71919307C99ECE585C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6F30D9B1D2265A1004D9EB1 /* QuartzCore.framework */,
+				C6F30D991D22654D004D9EB1 /* CoreGraphics.framework */,
 				B44A3238BC42F95D9F521D56 /* libPods-Acount.a */,
 			);
 			name = Frameworks;
@@ -218,6 +247,7 @@
 		C6D4E2471D118BBA00D3004D /* Acount */ = {
 			isa = PBXGroup;
 			children = (
+				C6F30D811D225F2C004D9EB1 /* Chart */,
 				C6D4E26B1D12495400D3004D /* DSCommom */,
 				C6C82FE11D1A6E2800EF9C93 /* Data */,
 				C6C82FDD1D1A6DE500EF9C93 /* Main */,
@@ -280,6 +310,43 @@
 				C6D4E2861D124B5600D3004D /* DSBaseViewController.m */,
 			);
 			name = DSCommom;
+			sourceTree = "<group>";
+		};
+		C6F30D811D225F2C004D9EB1 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				C6F30D951D225F55004D9EB1 /* XYPieChart */,
+				C6F30D821D225F3F004D9EB1 /* UUChart */,
+			);
+			name = Chart;
+			sourceTree = "<group>";
+		};
+		C6F30D821D225F3F004D9EB1 /* UUChart */ = {
+			isa = PBXGroup;
+			children = (
+				C6F30D831D225F3F004D9EB1 /* UUBar.h */,
+				C6F30D841D225F3F004D9EB1 /* UUBar.m */,
+				C6F30D851D225F3F004D9EB1 /* UUBarChart.h */,
+				C6F30D861D225F3F004D9EB1 /* UUBarChart.m */,
+				C6F30D871D225F3F004D9EB1 /* UUChart.h */,
+				C6F30D881D225F3F004D9EB1 /* UUChart.m */,
+				C6F30D891D225F3F004D9EB1 /* UUChartConst.h */,
+				C6F30D8A1D225F3F004D9EB1 /* UUChartConst.m */,
+				C6F30D8B1D225F3F004D9EB1 /* UUChartLabel.h */,
+				C6F30D8C1D225F3F004D9EB1 /* UUChartLabel.m */,
+				C6F30D8D1D225F3F004D9EB1 /* UULineChart.h */,
+				C6F30D8E1D225F3F004D9EB1 /* UULineChart.m */,
+			);
+			path = UUChart;
+			sourceTree = "<group>";
+		};
+		C6F30D951D225F55004D9EB1 /* XYPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				C6F30D961D225F55004D9EB1 /* XYPieChart.h */,
+				C6F30D971D225F55004D9EB1 /* XYPieChart.m */,
+			);
+			path = XYPieChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,18 +479,24 @@
 				C6D4E24D1D118BBA00D3004D /* AppDelegate.m in Sources */,
 				C6D4E2971D12765600D3004D /* RecordDataOperation.m in Sources */,
 				C6D4E28D1D124B5600D3004D /* NSString+DSEncrypt.m in Sources */,
+				C6F30D931D225F3F004D9EB1 /* UUChartLabel.m in Sources */,
 				C6D4E2A01D129D7D00D3004D /* MonthViewController.m in Sources */,
+				C6F30D941D225F3F004D9EB1 /* UULineChart.m in Sources */,
 				C6D4E24A1D118BBA00D3004D /* main.m in Sources */,
 				C6D4E2A31D129D8600D3004D /* WeekViewController.m in Sources */,
+				C6F30D901D225F3F004D9EB1 /* UUBarChart.m in Sources */,
 				C6D4E2931D124B5600D3004D /* DSBaseViewController.m in Sources */,
 				C6D4E2871D124B5600D3004D /* DSAnimation.m in Sources */,
 				C6D4E2911D124B5600D3004D /* UIView+DSCapture.m in Sources */,
 				C6D4E28C1D124B5600D3004D /* NSString+URLString.m in Sources */,
+				C6F30D921D225F3F004D9EB1 /* UUChartConst.m in Sources */,
+				C6F30D981D225F55004D9EB1 /* XYPieChart.m in Sources */,
 				C6D4E26A1D12463E00D3004D /* MainInterfaceViewController.m in Sources */,
 				C6D4E28F1D124B5600D3004D /* UIColor+DSHexColor.m in Sources */,
 				C6D4E2671D118C2A00D3004D /* Record.m in Sources */,
 				C6F3A2DC1D13DFD1005A8BD0 /* RecordTableViewCell.m in Sources */,
 				C6D4E2891D124B5600D3004D /* DSRequest.m in Sources */,
+				C6F30D8F1D225F3F004D9EB1 /* UUBar.m in Sources */,
 				C69FD0631D13CEAB00740465 /* UIImage+DSColorForImage.m in Sources */,
 				C6D4E2661D118C2A00D3004D /* Record+CoreDataProperties.m in Sources */,
 				C6C82FDB1D192FC400EF9C93 /* TotalRecordViewController.m in Sources */,
@@ -431,6 +504,7 @@
 				C6D4E28B1D124B5600D3004D /* UIImage+DSImageColor.m in Sources */,
 				C6D4E28A1D124B5600D3004D /* DSDevice.m in Sources */,
 				C6D4E2901D124B5600D3004D /* UIScreen+DSScreenSize.m in Sources */,
+				C6F30D911D225F3F004D9EB1 /* UUChart.m in Sources */,
 				C6F3A2E01D141AC9005A8BD0 /* NSDate+DateString.m in Sources */,
 				C6D4E28E1D124B5600D3004D /* NSString+DSPredicate.m in Sources */,
 				C6D4E2881D124B5600D3004D /* DSNetWork.m in Sources */,

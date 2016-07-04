@@ -10,10 +10,17 @@
 #import "RecordTableViewCell.h"
 #import "RecordDataOperation.h"
 #import "TotalRecordViewController.h"
+#import "UULineChart.h"
+#import "XYPieChart.h"
 
-@interface MonthViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MonthViewController ()<UITableViewDelegate,UITableViewDataSource,XYPieChartDelegate, XYPieChartDataSource>
 @property (nonatomic,retain) UITableView * table;
 @property (nonatomic,retain) NSMutableArray * dataSource;
+@property (nonatomic,retain) XYPieChart * pieChart;
+@property (nonatomic,retain) UIView * pieMask;
+@property (nonatomic,retain) UULineChart * lineChart;
+@property (nonatomic,retain) NSMutableArray * slices;
+@property (nonatomic,retain) NSArray * sliceColors;
 
 @end
 
@@ -61,6 +68,49 @@
     [self.view addSubview:_table];
 }
 
+- (void)createLineChart
+{
+    
+}
+
+- (void)createPieChart
+{
+    self.sliceColors =[NSArray arrayWithObjects:
+                       [UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:1],
+                       [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:1],
+                       [UIColor colorWithRed:62/255.0 green:173/255.0 blue:219/255.0 alpha:1],
+                       [UIColor colorWithRed:229/255.0 green:66/255.0 blue:115/255.0 alpha:1],
+                       [UIColor colorWithRed:148/255.0 green:141/255.0 blue:139/255.0 alpha:1],nil];
+    self.slices = [NSMutableArray arrayWithCapacity:10];
+    
+    for(int i = 0; i < 5; i ++)
+    {
+        NSNumber *one = [NSNumber numberWithInt:rand()%60+20];
+        [_slices addObject:one];
+    }
+    
+    _pieChart = [[XYPieChart alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth/2.0f, kScreenWidth/2.0f) Center:CGPointMake(kScreenWidth/2.0f, kScreenWidth/2.0f) Radius:120];
+    [_pieChart setDataSource:self];
+    [_pieChart setStartPieAngle:M_PI_2];
+    [_pieChart setAnimationSpeed:1.0];
+    [_pieChart setLabelFont:[UIFont systemFontOfSize:20.0f]];
+    [_pieChart setLabelRadius:60];
+    [_pieChart setShowPercentage:YES];
+    [_pieChart setPieBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1]];
+    [_pieChart setUserInteractionEnabled:YES];
+    [_pieChart setLabelShadowColor:[UIColor blackColor]];
+    [self.view addSubview:_pieChart];
+    
+    _pieMask = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2.0f - kScreenWidth/12.0f, kScreenWidth/2.0f + 64.0f- kScreenWidth/12.0f, kScreenWidth/6.0f, kScreenWidth/6.0f)];
+    [_pieMask.layer setCornerRadius:kScreenWidth/12.0f];
+    [_pieMask.layer setMasksToBounds:YES];
+    [_pieMask setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:_pieMask];
+    
+    [_pieChart reloadData];
+    NSLog(@"%.f",kScreenWidth);
+}
+
 - (CGFloat)tableHeight
 {
     CGFloat height = 0;
@@ -88,6 +138,23 @@
 - (void)clickView
 {
     
+}
+
+# pragma mark - XYPieChartDataSource
+
+- (NSUInteger)numberOfSlicesInPieChart:(XYPieChart *)pieChart
+{
+    return self.slices.count;
+}
+
+- (CGFloat)pieChart:(XYPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)index
+{
+    return [[self.slices objectAtIndex:index] intValue];
+}
+
+- (UIColor *)pieChart:(XYPieChart *)pieChart colorForSliceAtIndex:(NSUInteger)index
+{
+    return [self.sliceColors objectAtIndex:(index % self.sliceColors.count)];
 }
 
 - (void)reloadTableView

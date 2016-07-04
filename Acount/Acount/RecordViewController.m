@@ -20,6 +20,7 @@
     [super viewDidLoad];
     [_ensureBtn.layer setCornerRadius:40.0f];
     [_ensureBtn.layer setMasksToBounds:YES];
+    [self addGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -27,6 +28,23 @@
     [super viewDidAppear:animated];
     [_recordNumTF becomeFirstResponder];
 }
+
+- (void)addGesture
+{
+    UISwipeGestureRecognizer * swip = [[UISwipeGestureRecognizer alloc] init];
+    [swip setDirection:UISwipeGestureRecognizerDirectionDown];
+    [swip addTarget:self action:@selector(swipAction:)];
+    [self.view addGestureRecognizer:swip];
+}
+
+- (void)swipAction:(UISwipeGestureRecognizer*)swip
+{
+    if (swip.state == UIGestureRecognizerStateEnded)
+    {
+        [self backAction:nil];
+    }
+}
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

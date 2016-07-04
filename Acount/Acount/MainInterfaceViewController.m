@@ -38,6 +38,7 @@
     [self rightItem];
     [self tableView];
     [self configureFee];
+    [self addGesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -131,6 +132,43 @@
     
     [_inComeLab setText:[NSString stringWithFormat:@"收入：%.2f",_inCome]];
     [_outComeLab setText:[NSString stringWithFormat:@"支出：%.2f",_outCome]];
+}
+
+- (void)addGesture
+{
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] init];
+    [tap setNumberOfTapsRequired:2];
+    [tap addTarget:self action:@selector(doubleClickAction:)];
+    [self.view addGestureRecognizer:tap];
+    
+    UISwipeGestureRecognizer * swip = [[UISwipeGestureRecognizer alloc] init];
+    [swip setDirection:UISwipeGestureRecognizerDirectionUp];
+    [swip addTarget:self action:@selector(swipAction:)];
+    [self.view addGestureRecognizer:swip];
+}
+
+- (void)doubleClickAction:(UITapGestureRecognizer*)tap
+{
+    if (tap.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint aPoint = [tap locationInView:self.view];
+        if (aPoint.x>kScreenWidth/2.0f)
+        {
+            [self rightAction:nil];
+        }
+        else
+        {
+            [self leftAction:nil];
+        }
+    }
+}
+
+- (void)swipAction:(UISwipeGestureRecognizer*)swip
+{
+    if (swip.state == UIGestureRecognizerStateEnded)
+    {
+        [self recordAction:nil];
+    }
 }
 
 - (void)leftItem
