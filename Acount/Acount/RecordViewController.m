@@ -20,6 +20,7 @@
     [super viewDidLoad];
     [_ensureBtn.layer setCornerRadius:40.0f];
     [_ensureBtn.layer setMasksToBounds:YES];
+    [_recordTypeSwitch setTintColor:[UIColor redColor]];
     [self addGesture];
 }
 
