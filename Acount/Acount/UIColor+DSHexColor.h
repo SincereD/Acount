@@ -19,7 +19,7 @@
  *
  *  @return 颜色返回值
  */
-- (UIColor*)colorWithHexString:(NSString*)hexString;
++ (UIColor*)colorWithHexString:(NSString*)hexString;
 
 /**
  *  16进制色值
@@ -29,7 +29,7 @@
  *
  *  @return 颜色返回值
  */
-- (UIColor*)colorWithHexString:(NSString*)hexString alpha:(CGFloat)alpha;
++ (UIColor*)colorWithHexString:(NSString*)hexString alpha:(CGFloat)alpha;
 
 /**
  *  获取颜色的透明度

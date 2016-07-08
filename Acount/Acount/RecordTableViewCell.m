@@ -58,12 +58,12 @@
     if ([record.recordType isEqualToString:@"收入"])
     {
         [_typeLabel setText:@"收"];
-        [_typeLabel setBackgroundColor:[UIColor greenColor]];
+        [_typeLabel setBackgroundColor:[UIColor colorWithHexString:@"7ed321"]];
     }
     else if ([record.recordType isEqualToString:@"支出"])
     {
         [_typeLabel setText:@"支"];
-        [_typeLabel setBackgroundColor:[UIColor redColor]];
+        [_typeLabel setBackgroundColor:[UIColor colorWithHexString:@"ce3330"]];
     }
 }
 

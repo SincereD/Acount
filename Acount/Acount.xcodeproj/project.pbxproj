@@ -10,6 +10,7 @@
 		6AAB4D635FCA5E63BEFCC1F0 /* libPods-Acount.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A3238BC42F95D9F521D56 /* libPods-Acount.a */; };
 		C61D86371D12A2F1009126D0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61D86351D12A2F1009126D0 /* RecordViewController.m */; };
 		C61D86381D12A2F1009126D0 /* RecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C61D86361D12A2F1009126D0 /* RecordViewController.xib */; };
+		C62406B81D2F8BBB0029E49C /* EntranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62406B71D2F8BBB0029E49C /* EntranceViewController.m */; };
 		C69FD0631D13CEAB00740465 /* UIImage+DSColorForImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C69FD0621D13CEAB00740465 /* UIImage+DSColorForImage.m */; };
 		C6C82FDB1D192FC400EF9C93 /* TotalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C82FD91D192FC400EF9C93 /* TotalRecordViewController.m */; };
 		C6C82FDC1D192FC400EF9C93 /* TotalRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C82FDA1D192FC400EF9C93 /* TotalRecordViewController.xib */; };
@@ -58,6 +59,8 @@
 		C61D86341D12A2F1009126D0 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		C61D86351D12A2F1009126D0 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		C61D86361D12A2F1009126D0 /* RecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordViewController.xib; sourceTree = "<group>"; };
+		C62406B61D2F8BBB0029E49C /* EntranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntranceViewController.h; sourceTree = "<group>"; };
+		C62406B71D2F8BBB0029E49C /* EntranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntranceViewController.m; sourceTree = "<group>"; };
 		C69FD0611D13CEAB00740465 /* UIImage+DSColorForImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DSColorForImage.h"; sourceTree = "<group>"; };
 		C69FD0621D13CEAB00740465 /* UIImage+DSColorForImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSColorForImage.m"; sourceTree = "<group>"; };
 		C6C82FD81D192FC400EF9C93 /* TotalRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalRecordViewController.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				C61D86341D12A2F1009126D0 /* RecordViewController.h */,
 				C61D86351D12A2F1009126D0 /* RecordViewController.m */,
 				C61D86361D12A2F1009126D0 /* RecordViewController.xib */,
+				C62406B61D2F8BBB0029E49C /* EntranceViewController.h */,
+				C62406B71D2F8BBB0029E49C /* EntranceViewController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 				C6D4E2A01D129D7D00D3004D /* MonthViewController.m in Sources */,
 				C6F30D941D225F3F004D9EB1 /* UULineChart.m in Sources */,
 				C6D4E24A1D118BBA00D3004D /* main.m in Sources */,
+				C62406B81D2F8BBB0029E49C /* EntranceViewController.m in Sources */,
 				C6D4E2A31D129D8600D3004D /* WeekViewController.m in Sources */,
 				C6F30D901D225F3F004D9EB1 /* UUBarChart.m in Sources */,
 				C6D4E2931D124B5600D3004D /* DSBaseViewController.m in Sources */,

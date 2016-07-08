@@ -20,7 +20,7 @@
     [super viewDidLoad];
     [_ensureBtn.layer setCornerRadius:40.0f];
     [_ensureBtn.layer setMasksToBounds:YES];
-    [_recordTypeSwitch setTintColor:[UIColor redColor]];
+    [_recordTypeSwitch setTintColor:[UIColor colorWithHexString:@"ce3330"]];
     [self addGesture];
 }
 
@@ -54,9 +54,12 @@
 
 - (IBAction)backAction:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.view endEditing:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    });
 }
 
 - (IBAction)ensureAction:(id)sender
@@ -90,15 +93,17 @@
 {
     if (sender.isOn)
     {
-        [_recordTypeLab setTextColor:[UIColor greenColor]];
+        [_recordTypeLab setTextColor:[UIColor colorWithHexString:@"7ed321"]];
         [_recordTypeLab setText:@"收入："];
-        [sender setTintColor:[UIColor greenColor]];
+        [sender setTintColor:[UIColor colorWithHexString:@"7ed321"]];
+        [_recordNumTF setPlaceholder:@" િ😁ી "];
     }
     else
     {
-        [_recordTypeLab setTextColor:[UIColor redColor]];
+        [_recordTypeLab setTextColor:[UIColor colorWithHexString:@"ce3330"]];
         [_recordTypeLab setText:@"支出："];
-        [sender setTintColor:[UIColor redColor]];
+        [sender setTintColor:[UIColor colorWithHexString:@"ce3330"]];
+        [_recordNumTF setPlaceholder:@"࿓😒࿐"];
     }
 }
 

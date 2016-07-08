@@ -10,7 +10,7 @@
 
 @implementation UIColor (DSHexColor)
 
-- (UIColor*)colorWithHexString:(NSString*)hexString{
++ (UIColor*)colorWithHexString:(NSString*)hexString{
     unsigned int red,green,blue;
     NSRange range;
     range.length = 2;
@@ -23,7 +23,7 @@
     return [UIColor colorWithRed:(float)(red/255.0f) green:(float)(green/255.0f) blue:(float)(blue/255.0f) alpha:1.0f];
 }
 
-- (UIColor*)colorWithHexString:(NSString*)hexString alpha:(CGFloat)alpha
++ (UIColor*)colorWithHexString:(NSString*)hexString alpha:(CGFloat)alpha
 {
     unsigned int red,green,blue;
     NSRange range;
