@@ -14,13 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - JTNumberScrollAnimatedView (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - JTNumberScrollAnimatedView
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  JTNumberScrollAnimatedView: 2777d71cab7ca8126e9cfa99f9fdd22c37644d48
 
-PODFILE CHECKSUM: 96b8f8e4500bd0ae9c68801052d822843b9aa4c8
+PODFILE CHECKSUM: 81f6adb33d41182cfcadb27a239379263e9d5fa0
 
 COCOAPODS: 1.0.0.beta.5

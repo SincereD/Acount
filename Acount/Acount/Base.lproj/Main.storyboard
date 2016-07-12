@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main Interface View Controller-->
@@ -17,75 +16,13 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支出：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgF-cz-jHi">
-                                <rect key="frame" x="16" y="520" width="200" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="dOl-Me-ZGZ"/>
-                                    <constraint firstAttribute="width" constant="200" id="x68-jW-DQn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.80784313725490198" green="0.20000000000000001" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收入：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mML-o9-M7W">
-                                <rect key="frame" x="16" y="474" width="200" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="9tz-bO-qYu"/>
-                                    <constraint firstAttribute="width" constant="200" id="ViZ-sn-KWX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.49411764705882355" green="0.82745098039215681" blue="0.12941176470588234" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMG-sm-sSh">
-                                <rect key="frame" x="232" y="489" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="I47-U3-GVh"/>
-                                    <constraint firstAttribute="height" constant="50" id="PTg-wc-dp0"/>
-                                    <constraint firstAttribute="width" constant="50" id="l4j-nY-RRk"/>
-                                    <constraint firstAttribute="width" constant="50" id="uTr-Vd-RQO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <state key="normal" title="+">
-                                    <color key="titleColor" red="0.50196078430000002" green="0.25098039220000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="I47-U3-GVh"/>
-                                        <exclude reference="uTr-Vd-RQO"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="recordAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8uF-KS-lwr"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="mML-o9-M7W" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="49q-QL-Lz1"/>
-                            <constraint firstItem="YgF-cz-jHi" firstAttribute="top" secondItem="mML-o9-M7W" secondAttribute="bottom" constant="12" id="9WK-0g-9jN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sMG-sm-sSh" secondAttribute="trailing" constant="22" id="JXI-Zu-gJ3"/>
-                            <constraint firstItem="sMG-sm-sSh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="415" id="T6A-da-eip"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sMG-sm-sSh" secondAttribute="bottom" constant="29" id="UZP-cq-7wC"/>
-                            <constraint firstItem="YgF-cz-jHi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZvO-TF-4w3"/>
-                            <constraint firstItem="sMG-sm-sSh" firstAttribute="leading" secondItem="mML-o9-M7W" secondAttribute="trailing" constant="96" id="q8e-17-a0Y"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YgF-cz-jHi" secondAttribute="bottom" constant="14" id="ux2-Id-D4s"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="T6A-da-eip"/>
-                                <exclude reference="q8e-17-a0Y"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="7W1-LW-r5d"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="inComeLab" destination="mML-o9-M7W" id="TSK-fe-vww"/>
-                        <outlet property="outComeLab" destination="YgF-cz-jHi" id="07T-Fa-oBh"/>
-                        <segue destination="p0l-a7-kh3" kind="show" identifier="ShowWeek" id="NQW-9H-23z"/>
-                        <segue destination="ILG-gV-1d3" kind="show" identifier="ShowMonth" id="oeL-Pt-hnH"/>
+                        <segue destination="p0l-a7-kh3" kind="presentation" identifier="ShowWeek" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="NQW-9H-23z"/>
+                        <segue destination="ILG-gV-1d3" kind="presentation" identifier="ShowMonth" id="oeL-Pt-hnH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

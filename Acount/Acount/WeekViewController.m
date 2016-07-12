@@ -22,20 +22,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"本周"];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:RGB(27, 27, 26)];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    [self navgationView];
     [self tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     NSDictionary * weekDict = [[NSDate date] getMonthYearWeek];
     _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getWeekDataSourceWithYear:weekDict[@"year"] month:weekDict[@"month"] week:weekDict[@"week"]]];
     [self reloadTableView];
     [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
     [self becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
@@ -51,9 +63,31 @@
     return;
 }
 
+- (void)navgationView
+{
+    UILabel * titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 100, 44)];
+    [titleLab setTextColor:[UIColor whiteColor]];
+    [titleLab setText:@"本周收支"];
+    [self.view addSubview:titleLab];
+    
+    UIButton * dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [dismissBtn setTitle:@"×" forState:UIControlStateNormal];
+    [dismissBtn.titleLabel setFont:[UIFont fontWithName:@"STHeitiSC-Light" size:33.0f]];
+    [dismissBtn setFrame:CGRectMake(kScreenWidth - 50, 20, 44, 44)];
+    [dismissBtn addTarget:self action:@selector(dismissAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:dismissBtn];
+}
+
+- (void)dismissAction
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 - (void)tableView
 {
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, _dataSource.count*60 + 30) style:UITableViewStylePlain];
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(20,64, kScreenWidth - 40, _dataSource.count*60 + 30) style:UITableViewStylePlain];
     [_table setDelegate:self];
     [_table setDataSource:self];
     [self.view addSubview:_table];
@@ -86,7 +120,7 @@
 - (void)resetTableHeight
 {
     [UIView animateWithDuration:0.5 animations:^{
-        [_table setFrame:CGRectMake(0, 64, kScreenWidth, [self tableHeight])];
+        [_table setFrame:CGRectMake(20, 64, kScreenWidth-40, [self tableHeight])];
     }];
 }
 
@@ -100,7 +134,7 @@
     else
     {
         [UIView animateWithDuration:0.5 animations:^{
-            [_table setFrame:CGRectMake(0, 64, kScreenWidth, height)];
+            [_table setFrame:CGRectMake(20, 64, kScreenWidth-40, height)];
         } completion:^(BOOL finished) {
             [_table reloadData];
         }];
@@ -116,7 +150,7 @@
     {
         [_table setScrollEnabled:NO];
     }
-    [_table setFrame:CGRectMake(0, 64, kScreenWidth, height)];
+    [_table setFrame:CGRectMake(20, 64, kScreenWidth-40, height)];
     [_table reloadData];
 }
 

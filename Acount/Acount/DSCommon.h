@@ -11,6 +11,7 @@
 
 #import "DSBaseViewController.h"
 
+#import "DSMacro.h"
 #import "UIColor+DSHexColor.h"
 #import "UIView+DSCapture.h"
 #import "UIScreen+DSScreenSize.h"

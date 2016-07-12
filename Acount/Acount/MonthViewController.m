@@ -12,8 +12,10 @@
 #import "TotalRecordViewController.h"
 #import "UULineChart.h"
 #import "XYPieChart.h"
+#import "TotalRecordHeaderView.h"
 
 @interface MonthViewController ()<UITableViewDelegate,UITableViewDataSource,XYPieChartDelegate, XYPieChartDataSource>
+@property (nonatomic,retain) TotalRecordHeaderView * headerView;
 @property (nonatomic,retain) UITableView * table;
 @property (nonatomic,retain) NSMutableArray * dataSource;
 @property (nonatomic,retain) XYPieChart * pieChart;
@@ -29,10 +31,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"本月"];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:RGB(27, 27, 26)];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    
+    [self initHeaderView];
     [self tableView];
+    [self navgationView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -45,6 +49,38 @@
     
     [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
     [self becomeFirstResponder];
+}
+
+- (void)navgationView
+{
+    UILabel * titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 100, 44)];
+    [titleLab setTextColor:[UIColor whiteColor]];
+    [titleLab setText:@"本月收支"];
+    [self.view addSubview:titleLab];
+    
+    UIButton * dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [dismissBtn setTitle:@"×" forState:UIControlStateNormal];
+    [dismissBtn.titleLabel setFont:[UIFont fontWithName:@"STHeitiSC-Light" size:33.0f]];
+    [dismissBtn setFrame:CGRectMake(kScreenWidth - 50, 20, 44, 44)];
+    [dismissBtn addTarget:self action:@selector(dismissAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:dismissBtn];
+}
+
+- (void)dismissAction
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)initHeaderView
+{
+    _headerView = [[TotalRecordHeaderView alloc] initWithRecord:nil];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
@@ -62,7 +98,7 @@
 
 - (void)tableView
 {
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, 60*7) style:UITableViewStylePlain];
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(20, 64, kScreenWidth-40, 60*7) style:UITableViewStylePlain];
     [_table setDelegate:self];
     [_table setDataSource:self];
     [self.view addSubview:_table];
@@ -159,7 +195,7 @@
 
 - (void)reloadTableView
 {
-    [_table setFrame:CGRectMake(0, 64, kScreenWidth, [self tableHeight])];
+    [_table setFrame:CGRectMake(20, 64, kScreenWidth-40, [self tableHeight])];
     [_table reloadData];
 }
 
@@ -181,6 +217,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60.0f;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return _headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 115.0f;
 }
 
 # pragma mark TableView DataSource

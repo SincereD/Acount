@@ -10,8 +10,6 @@
 
 @interface MainInterfaceViewController : DSBaseViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *outComeLab;
-@property (weak, nonatomic) IBOutlet UILabel *inComeLab;
 - (IBAction)recordAction:(id)sender;
 
 @end

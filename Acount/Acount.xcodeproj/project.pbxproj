@@ -11,11 +11,14 @@
 		C61D86371D12A2F1009126D0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61D86351D12A2F1009126D0 /* RecordViewController.m */; };
 		C61D86381D12A2F1009126D0 /* RecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C61D86361D12A2F1009126D0 /* RecordViewController.xib */; };
 		C62406B81D2F8BBB0029E49C /* EntranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62406B71D2F8BBB0029E49C /* EntranceViewController.m */; };
+		C645F8FF1D34EB2F004FEAC8 /* TotalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C645F8FE1D34EB2F004FEAC8 /* TotalRecordHeaderView.m */; };
 		C69FD0631D13CEAB00740465 /* UIImage+DSColorForImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C69FD0621D13CEAB00740465 /* UIImage+DSColorForImage.m */; };
 		C6B704411D3398FC00586890 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B704401D3398FC00586890 /* NotificationCenter.framework */; };
 		C6B704451D3398FC00586890 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B704441D3398FC00586890 /* TodayViewController.m */; };
 		C6B704481D3398FC00586890 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B704461D3398FC00586890 /* MainInterface.storyboard */; };
 		C6B7044C1D3398FC00586890 /* AcountToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C6B7043F1D3398FC00586890 /* AcountToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C6B704531D34960400586890 /* RecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B704521D34960400586890 /* RecordView.m */; };
+		C6B704561D34B66600586890 /* MainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B704551D34B66600586890 /* MainHeaderView.m */; };
 		C6C82FDB1D192FC400EF9C93 /* TotalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C82FD91D192FC400EF9C93 /* TotalRecordViewController.m */; };
 		C6C82FDC1D192FC400EF9C93 /* TotalRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C82FDA1D192FC400EF9C93 /* TotalRecordViewController.xib */; };
 		C6D4E24A1D118BBA00D3004D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D4E2491D118BBA00D3004D /* main.m */; };
@@ -89,6 +92,9 @@
 		C61D86361D12A2F1009126D0 /* RecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordViewController.xib; sourceTree = "<group>"; };
 		C62406B61D2F8BBB0029E49C /* EntranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntranceViewController.h; sourceTree = "<group>"; };
 		C62406B71D2F8BBB0029E49C /* EntranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntranceViewController.m; sourceTree = "<group>"; };
+		C645F8FC1D34D487004FEAC8 /* DSMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMacro.h; sourceTree = "<group>"; };
+		C645F8FD1D34EB2F004FEAC8 /* TotalRecordHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalRecordHeaderView.h; sourceTree = "<group>"; };
+		C645F8FE1D34EB2F004FEAC8 /* TotalRecordHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalRecordHeaderView.m; sourceTree = "<group>"; };
 		C69FD0611D13CEAB00740465 /* UIImage+DSColorForImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DSColorForImage.h"; sourceTree = "<group>"; };
 		C69FD0621D13CEAB00740465 /* UIImage+DSColorForImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSColorForImage.m"; sourceTree = "<group>"; };
 		C6B7043F1D3398FC00586890 /* AcountToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AcountToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +103,10 @@
 		C6B704441D3398FC00586890 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		C6B704471D3398FC00586890 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C6B704491D3398FC00586890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6B704511D34960400586890 /* RecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordView.h; sourceTree = "<group>"; };
+		C6B704521D34960400586890 /* RecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordView.m; sourceTree = "<group>"; };
+		C6B704541D34B66600586890 /* MainHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHeaderView.h; sourceTree = "<group>"; };
+		C6B704551D34B66600586890 /* MainHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHeaderView.m; sourceTree = "<group>"; };
 		C6C82FD81D192FC400EF9C93 /* TotalRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalRecordViewController.h; sourceTree = "<group>"; };
 		C6C82FD91D192FC400EF9C93 /* TotalRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalRecordViewController.m; sourceTree = "<group>"; };
 		C6C82FDA1D192FC400EF9C93 /* TotalRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TotalRecordViewController.xib; sourceTree = "<group>"; };
@@ -231,6 +241,10 @@
 			children = (
 				C6D4E2681D12463E00D3004D /* MainInterfaceViewController.h */,
 				C6D4E2691D12463E00D3004D /* MainInterfaceViewController.m */,
+				C6B704541D34B66600586890 /* MainHeaderView.h */,
+				C6B704551D34B66600586890 /* MainHeaderView.m */,
+				C645F8FD1D34EB2F004FEAC8 /* TotalRecordHeaderView.h */,
+				C645F8FE1D34EB2F004FEAC8 /* TotalRecordHeaderView.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -267,6 +281,8 @@
 				C61D86361D12A2F1009126D0 /* RecordViewController.xib */,
 				C62406B61D2F8BBB0029E49C /* EntranceViewController.h */,
 				C62406B71D2F8BBB0029E49C /* EntranceViewController.m */,
+				C6B704511D34960400586890 /* RecordView.h */,
+				C6B704521D34960400586890 /* RecordView.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -339,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				C6D4E26C1D124B5600D3004D /* DSCommon.h */,
+				C645F8FC1D34D487004FEAC8 /* DSMacro.h */,
 				C6D4E26D1D124B5600D3004D /* DSAnimation.h */,
 				C6D4E26E1D124B5600D3004D /* DSAnimation.m */,
 				C6D4E26F1D124B5600D3004D /* DSNetWork.h */,
@@ -582,7 +599,9 @@
 				C6D4E28D1D124B5600D3004D /* NSString+DSEncrypt.m in Sources */,
 				C6F30D931D225F3F004D9EB1 /* UUChartLabel.m in Sources */,
 				C6D4E2A01D129D7D00D3004D /* MonthViewController.m in Sources */,
+				C6B704561D34B66600586890 /* MainHeaderView.m in Sources */,
 				C6F30D941D225F3F004D9EB1 /* UULineChart.m in Sources */,
+				C645F8FF1D34EB2F004FEAC8 /* TotalRecordHeaderView.m in Sources */,
 				C6D4E24A1D118BBA00D3004D /* main.m in Sources */,
 				C62406B81D2F8BBB0029E49C /* EntranceViewController.m in Sources */,
 				C6D4E2A31D129D8600D3004D /* WeekViewController.m in Sources */,
@@ -604,6 +623,7 @@
 				C6C82FDB1D192FC400EF9C93 /* TotalRecordViewController.m in Sources */,
 				C6D4E2921D124B5600D3004D /* DSWelcomViewController.m in Sources */,
 				C6D4E28B1D124B5600D3004D /* UIImage+DSImageColor.m in Sources */,
+				C6B704531D34960400586890 /* RecordView.m in Sources */,
 				C6D4E28A1D124B5600D3004D /* DSDevice.m in Sources */,
 				C6D4E2901D124B5600D3004D /* UIScreen+DSScreenSize.m in Sources */,
 				C6F30D911D225F3F004D9EB1 /* UUChart.m in Sources */,
@@ -801,6 +821,7 @@
 				C6B7044E1D3398FC00586890 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6D4E2401D118BBA00D3004D /* Build configuration list for PBXProject "Acount" */ = {
 			isa = XCConfigurationList;
