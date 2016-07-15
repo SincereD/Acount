@@ -31,6 +31,16 @@
     return self;
 }
 
+- (void)setMainTitle:(NSString*)mainTitle
+{
+    [_mainTitle setText:mainTitle];
+}
+
+- (void)setSubTitle:(NSString*)subTitle
+{
+    [_subTitle setText:subTitle];
+}
+
 - (void)initSelf
 {
     [self setBackgroundColor:[UIColor whiteColor]];
@@ -39,7 +49,7 @@
 
 - (void)mainTitle
 {
-    _mainTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, CGRectGetWidth(self.frame), 40)];
+    _mainTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.frame), 40)];
     [_mainTitle setText:@"MainTitle"];
     [_mainTitle setTextColor:[UIColor colorWithHexString:@"333333"]];
     [_mainTitle setFont:[UIFont systemFontOfSize:25.0f]];

@@ -132,8 +132,8 @@
     [monthBtn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
     [_bottomView addSubview:monthBtn];
     
-    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2.0f - 1, 5, 1, kTabBarHeight-10)];
-    [lineView setBackgroundColor:[UIColor whiteColor]];
+    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2.0f - 1, 7, 1, kTabBarHeight-14)];
+    [lineView setBackgroundColor:[UIColor lightGrayColor]];
     [_bottomView addSubview:lineView];
 }
 

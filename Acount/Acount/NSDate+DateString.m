@@ -48,7 +48,7 @@
     NSDateComponents * dd = [cal components:unitFlags fromDate:self];
     NSInteger weekDay = [dd weekday];
     NSString * weekDayStr = [self getWeekDayStringWithInterger:weekDay];
-    if ([weekDayStr isEqualToString:[[NSDate date] getWeekDay]])
+    if ([[self getMonthDayStringWithContrastion] isEqualToString:@"今天"])
     {
         return @"今天";
     }
@@ -96,6 +96,38 @@
         dateString = @"今天";
     }
     return dateString;
+}
+
+/**
+ *  获取是第几周
+ *
+ *  @return NSString
+ */
+- (NSString*)getWeekdayOrdinal
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    unsigned int unitFlags = NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitMonth | NSCalendarUnitDay | kCFCalendarUnitWeekOfYear;
+    NSDateComponents * dd = [cal components:unitFlags fromDate:self];
+    NSInteger ordinal = [dd weekOfYear];
+    NSString * dateString = [NSString stringWithFormat:@"%d",(int)ordinal];
+    return dateString;
+}
+
+/**
+ *  获取范围字符串 如 2016/01/12/ - 02/20
+ *
+ *  @param newlyDate 截止日期
+ *  @param olderDate 起始日期
+ *
+ *  @return NSString
+ */
+- (NSString*)getRangeStringWithDate:(NSDate*)newlyDate
+                               date:(NSDate*)olderDate
+{
+    NSDictionary * olderDict = [olderDate getMonthYearDay];
+    NSDictionary * newlyDict = [newlyDate getMonthYearDay];
+    NSString * result = [NSString stringWithFormat:@"%@/%@/%@ - %@/%@",olderDict[@"year"],olderDict[@"month"],olderDict[@"day"],newlyDict[@"month"],newlyDict[@"day"]];
+    return result;
 }
 
 @end

@@ -1,1 +1,0 @@
-../../../JTNumberScrollAnimatedView/JTNumberScrollAnimatedView/JTNumberScrollAnimatedView.h

@@ -78,6 +78,26 @@
                                  week:(NSString*)week;
 
 /**
+ *  对周数据按天进行划分
+ *
+ *  @param weekData 周数据
+ *
+ *  @return NSArray    
+ *  JSON:[[],[],[]]; 
+ */
+- (NSArray*)seprateWeekDataToDay:(NSArray*)weekData;
+
+
+/**
+ *  对没有数据划分到天 （这里方法名写错了）
+ *
+ *  @param monthData 月数据
+ *
+ *  @return NSArray
+ */
+- (NSArray*)seprateMonthDataToWeek:(NSArray*)monthData;
+
+/**
  *  获取今天数据
  *
  *  @return NSArray

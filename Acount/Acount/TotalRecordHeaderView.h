@@ -14,4 +14,8 @@
 
 - (instancetype)initWithRecord:(Record*)record;
 
+- (void)setMainTitle:(NSString*)mainTitle;
+
+- (void)setSubTitle:(NSString*)subTitle;
+
 @end

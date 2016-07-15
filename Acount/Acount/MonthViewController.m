@@ -10,19 +10,13 @@
 #import "RecordTableViewCell.h"
 #import "RecordDataOperation.h"
 #import "TotalRecordViewController.h"
-#import "UULineChart.h"
-#import "XYPieChart.h"
+
 #import "TotalRecordHeaderView.h"
 
-@interface MonthViewController ()<UITableViewDelegate,UITableViewDataSource,XYPieChartDelegate, XYPieChartDataSource>
+@interface MonthViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,retain) TotalRecordHeaderView * headerView;
 @property (nonatomic,retain) UITableView * table;
 @property (nonatomic,retain) NSMutableArray * dataSource;
-@property (nonatomic,retain) XYPieChart * pieChart;
-@property (nonatomic,retain) UIView * pieMask;
-@property (nonatomic,retain) UULineChart * lineChart;
-@property (nonatomic,retain) NSMutableArray * slices;
-@property (nonatomic,retain) NSArray * sliceColors;
 
 @end
 
@@ -33,29 +27,66 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:RGB(27, 27, 26)];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    
-    [self initHeaderView];
-    [self tableView];
     [self navgationView];
+    [self tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     NSDictionary * weekDict = [[NSDate date] getMonthYearWeek];
     _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getMonthDataSourceWithYear:weekDict[@"year"] month:weekDict[@"month"]]];
+    _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] seprateMonthDataToWeek:_dataSource]];
     [self reloadTableView];
-    
+    [self initHeaderView];
     [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
     [self becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+- (void)initHeaderView
+{
+    Record * firstRecord = [[_dataSource lastObject] lastObject];
+    Record * lastRecord = [[_dataSource firstObject] firstObject];
+    NSString * mainTitle = [NSString stringWithFormat:@"%@月",[[firstRecord.recordDate getMonthYearDay] objectForKey:@"month"]];
+    NSString * subTitle = [firstRecord.recordDate getRangeStringWithDate:lastRecord.recordDate date:firstRecord.recordDate];
+    _headerView = [[TotalRecordHeaderView alloc] initWithRecord:nil];
+    [_headerView setFrame:CGRectMake(20, 64, kScreenWidth-40, 115)];
+    [_headerView setSubTitle:subTitle];
+    [_headerView setMainTitle:mainTitle];
+    [self.view addSubview:_headerView];
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (event.subtype == UIEventSubtypeMotionShake)
+    {
+        TotalRecordViewController * totalVC = [[TotalRecordViewController alloc] init];
+        [totalVC setRecordArray:_dataSource];
+        [self presentViewController:totalVC animated:YES completion:^{
+            
+        }];
+    }
+    return;
 }
 
 - (void)navgationView
 {
     UILabel * titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 100, 44)];
     [titleLab setTextColor:[UIColor whiteColor]];
-    [titleLab setText:@"本月收支"];
+    [titleLab setText:@"本周收支"];
     [self.view addSubview:titleLab];
     
     UIButton * dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -73,95 +104,35 @@
     }];
 }
 
-- (void)initHeaderView
-{
-    _headerView = [[TotalRecordHeaderView alloc] initWithRecord:nil];
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    if (event.subtype == UIEventSubtypeMotionShake)
-    {
-        TotalRecordViewController * totalVC = [[TotalRecordViewController alloc] init];
-        [totalVC setRecordArray:_dataSource];
-        [self presentViewController:totalVC animated:YES completion:^{
-            
-        }];
-    }
-    return;
-}
-
 - (void)tableView
 {
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(20, 64, kScreenWidth-40, 60*7) style:UITableViewStylePlain];
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(20,64+115, kScreenWidth - 40, _dataSource.count*60 + 30) style:UITableViewStylePlain];
     [_table setDelegate:self];
     [_table setDataSource:self];
+    [_table setSeparatorColor:[UIColor clearColor]];
     [self.view addSubview:_table];
-}
-
-- (void)createLineChart
-{
-    
-}
-
-- (void)createPieChart
-{
-    self.sliceColors =[NSArray arrayWithObjects:
-                       [UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:1],
-                       [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:1],
-                       [UIColor colorWithRed:62/255.0 green:173/255.0 blue:219/255.0 alpha:1],
-                       [UIColor colorWithRed:229/255.0 green:66/255.0 blue:115/255.0 alpha:1],
-                       [UIColor colorWithRed:148/255.0 green:141/255.0 blue:139/255.0 alpha:1],nil];
-    self.slices = [NSMutableArray arrayWithCapacity:10];
-    
-    for(int i = 0; i < 5; i ++)
-    {
-        NSNumber *one = [NSNumber numberWithInt:rand()%60+20];
-        [_slices addObject:one];
-    }
-    
-    _pieChart = [[XYPieChart alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth/2.0f, kScreenWidth/2.0f) Center:CGPointMake(kScreenWidth/2.0f, kScreenWidth/2.0f) Radius:120];
-    [_pieChart setDataSource:self];
-    [_pieChart setStartPieAngle:M_PI_2];
-    [_pieChart setAnimationSpeed:1.0];
-    [_pieChart setLabelFont:[UIFont systemFontOfSize:20.0f]];
-    [_pieChart setLabelRadius:60];
-    [_pieChart setShowPercentage:YES];
-    [_pieChart setPieBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1]];
-    [_pieChart setUserInteractionEnabled:YES];
-    [_pieChart setLabelShadowColor:[UIColor blackColor]];
-    [self.view addSubview:_pieChart];
-    
-    _pieMask = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2.0f - kScreenWidth/12.0f, kScreenWidth/2.0f + 64.0f- kScreenWidth/12.0f, kScreenWidth/6.0f, kScreenWidth/6.0f)];
-    [_pieMask.layer setCornerRadius:kScreenWidth/12.0f];
-    [_pieMask.layer setMasksToBounds:YES];
-    [_pieMask setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:_pieMask];
-    
-    [_pieChart reloadData];
-    NSLog(@"%.f",kScreenWidth);
 }
 
 - (CGFloat)tableHeight
 {
     CGFloat height = 0;
+    NSInteger index = 0;
     if (_dataSource && _dataSource.count != 0)
     {
-        height = _dataSource.count * 60;
+        for (NSArray * rowData in _dataSource)
+        {
+            index += rowData.count;
+        }
+        height = index*20;
     }
     else
     {
         return 0;
     }
     
-    if (height > (kScreenHeight-64))
+    if (height > (kScreenHeight-64-115))
     {
-        height=kScreenHeight-64;
+        height=kScreenHeight-64-115;
         [_table setScrollEnabled:YES];
     }
     else
@@ -171,69 +142,113 @@
     return height;
 }
 
-- (void)clickView
+- (void)resetTableHeight
 {
-    
-}
-
-# pragma mark - XYPieChartDataSource
-
-- (NSUInteger)numberOfSlicesInPieChart:(XYPieChart *)pieChart
-{
-    return self.slices.count;
-}
-
-- (CGFloat)pieChart:(XYPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)index
-{
-    return [[self.slices objectAtIndex:index] intValue];
-}
-
-- (UIColor *)pieChart:(XYPieChart *)pieChart colorForSliceAtIndex:(NSUInteger)index
-{
-    return [self.sliceColors objectAtIndex:(index % self.sliceColors.count)];
+    [UIView animateWithDuration:0.5 animations:^{
+        [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, [self tableHeight])];
+    }];
 }
 
 - (void)reloadTableView
 {
-    [_table setFrame:CGRectMake(20, 64, kScreenWidth-40, [self tableHeight])];
+    CGFloat height = 0;
+    NSInteger index = 0;
+    if (_dataSource && _dataSource.count != 0)
+    {
+        for (NSArray * rowData in _dataSource)
+        {
+            index += rowData.count;
+        }
+        height = index*20 + _dataSource.count * 30;
+    }
+    else
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, height)];
+        } completion:^(BOOL finished) {
+            [_table reloadData];
+        }];
+        return;
+    }
+    
+    if (height > (kScreenHeight-64-115))
+    {
+        height = kScreenHeight-64-115;
+        [_table setScrollEnabled:YES];
+    }
+    else
+    {
+        [_table setScrollEnabled:NO];
+    }
+    [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, height)];
     [_table reloadData];
 }
 
 # pragma mark TableView Delegate
 
-- (RecordTableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    Record * record = [_dataSource[section] objectAtIndex:0];
+    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-40, 40)];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(36, 10, CGRectGetWidth(headerView.frame), 20)];
+    [label setText:[record.recordDate getMonthDayStringWithContrastion]];
+    [label setTextColor:[UIColor colorWithHexString:@"ce3330"]];
+    [label setFont:[UIFont systemFontOfSize:19.0f]];
+    [headerView addSubview:label];
+    return headerView;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView * footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-40, 30)];
+    [footerView setBackgroundColor:[UIColor whiteColor]];
+    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(36, 18, kScreenWidth-40-72, 1)];
+    [lineView setBackgroundColor:[UIColor colorWithHexString:@"C1C1C1" alpha:0.50f]];
+    [footerView addSubview:lineView];
+    return footerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 30.0f;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RecordTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
     if (!cell)
     {
         cell= [[[NSBundle mainBundle]loadNibNamed:@"RecordTableViewCell" owner:nil options:nil] firstObject];
     }
-    Record * record = _dataSource[indexPath.row];
-    [cell setType:RecordTypeMonth];
+    NSArray * rowData = _dataSource[indexPath.section];
+    Record * record = rowData[indexPath.row];
+    [cell setType:RecordTypeWeek];
     [cell setRecord:record];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60.0f;
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return _headerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 115.0f;
+    return 25.0f;
 }
 
 # pragma mark TableView DataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _dataSource.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSArray * rowData = _dataSource[section];
+    return rowData.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -246,7 +261,7 @@
     [[RecordDataOperation sharedDataOperation] deleteCoreDataWithRecord:_dataSource[indexPath.row]];
     [_dataSource removeObjectAtIndex:indexPath.row];
     [_table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [_table setFrame:CGRectMake(0, 64, kScreenWidth, [self tableHeight])];
+    [self resetTableHeight];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

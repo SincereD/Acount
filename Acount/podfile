@@ -1,5 +1,4 @@
 platform :ios, '8.0'
-target ‘Acount’do
+target 'Acount' do
 pod 'AFNetworking'
-pod 'JTNumberScrollAnimatedView'
 end

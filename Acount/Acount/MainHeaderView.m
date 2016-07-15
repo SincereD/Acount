@@ -9,7 +9,6 @@
 //
 
 #import "MainHeaderView.h"
-#import "JTNumberScrollAnimatedView.h"
 //#import "UILabel+BezierAnimation.h"
 
 @interface MainHeaderView ()
@@ -20,7 +19,6 @@
     UILabel * _priceLab;
     UILabel * _subTitle;
     UIView  * _lineView;
-    JTNumberScrollAnimatedView * _animationView;
     
     CGFloat  _currentNum;
     CGFloat  _targetNum;

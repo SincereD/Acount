@@ -14,4 +14,8 @@
 - (instancetype)initWithRecord:(Record*)record
                          width:(CGFloat)width;
 
+- (void)reloadRecord:(Record*)record;
+
+- (void)recordRegulate;
+
 @end

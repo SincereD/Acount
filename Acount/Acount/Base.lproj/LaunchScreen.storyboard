@@ -19,12 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Entrance" translatesAutoresizingMaskIntoConstraints="NO" id="geZ-7i-OqS">
-                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
+                                <rect key="frame" x="-4" y="-2" width="328" height="570"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="geZ-7i-OqS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="3Oq-ix-8fq"/>
+                            <constraint firstItem="geZ-7i-OqS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-2" id="3Oq-ix-8fq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="geZ-7i-OqS" secondAttribute="trailing" constant="-20" id="4ml-Nr-zLb"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="geZ-7i-OqS" secondAttribute="bottom" id="Ek2-lt-b1l"/>
                             <constraint firstItem="geZ-7i-OqS" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="LgO-p7-mfj"/>
@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Entrance" width="317" height="567"/>
+        <image name="Entrance" width="320" height="568"/>
     </resources>
 </document>

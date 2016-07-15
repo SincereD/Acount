@@ -7,6 +7,13 @@
 //
 
 #import "RecordTableViewCell.h"
+#import "RecordView.h"
+
+@interface RecordTableViewCell ()
+{
+    RecordView * _recordView;
+}
+@end
 
 @implementation RecordTableViewCell
 
@@ -25,7 +32,22 @@
 
 - (void)setRecord:(Record *)record
 {
+    _dateLabel.hidden = YES;
+    _timeLabel.hidden = YES;
+    _todayLabel.hidden = YES;
+    _typeLabel.hidden = YES;
+    _numberLabel.hidden = YES;
+    _detailLabel.hidden = YES;
+    
     _record =record;
+    if (!_recordView) {
+        _recordView = [[RecordView alloc] initWithRecord:_record width:kScreenWidth-40];
+        [self addSubview:_recordView];
+    }
+    else
+    {
+        [_recordView reloadRecord:_record];
+    }
     
     if (_type == RecordTypeDay)
     {
@@ -38,12 +60,14 @@
         _dateLabel.text = [record.recordDate getWeekDayWithContrastion];
         _timeLabel.text = [record.recordDate getHourMinuteString];
         _todayLabel.hidden = YES;
+        [_recordView recordRegulate];
     }
     else if (_type == RecordTypeMonth)
     {
         _dateLabel.text = [record.recordDate getMonthDayStringWithContrastion];
         _timeLabel.text = [record.recordDate getWeekDay];
         _todayLabel.hidden = YES;
+        [_recordView recordRegulate];
     }
     else
     {

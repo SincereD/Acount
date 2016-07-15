@@ -11,7 +11,10 @@
 #import "RecordDataOperation.h"
 #import "TotalRecordViewController.h"
 
+#import "TotalRecordHeaderView.h"
+
 @interface WeekViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,retain) TotalRecordHeaderView * headerView;
 @property (nonatomic,retain) UITableView * table;
 @property (nonatomic,retain) NSMutableArray * dataSource;
 
@@ -33,8 +36,11 @@
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     NSDictionary * weekDict = [[NSDate date] getMonthYearWeek];
+    
     _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] getWeekDataSourceWithYear:weekDict[@"year"] month:weekDict[@"month"] week:weekDict[@"week"]]];
+    _dataSource = [NSMutableArray arrayWithArray:[[RecordDataOperation sharedDataOperation] seprateWeekDataToDay:_dataSource]];
     [self reloadTableView];
+    [self initHeaderView];
     [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
     [self becomeFirstResponder];
 }
@@ -48,6 +54,19 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (void)initHeaderView
+{
+    Record * firstRecord = [[_dataSource lastObject] lastObject];
+    Record * lastRecord = [[_dataSource firstObject] firstObject];
+    NSString * mainTitle = [NSString stringWithFormat:@"第%@周",[firstRecord.recordDate getWeekdayOrdinal]];
+    NSString * subTitle = [firstRecord.recordDate getRangeStringWithDate:lastRecord.recordDate date:firstRecord.recordDate];
+    _headerView = [[TotalRecordHeaderView alloc] initWithRecord:nil];
+    [_headerView setFrame:CGRectMake(20, 64, kScreenWidth-40, 115)];
+    [_headerView setSubTitle:subTitle];
+    [_headerView setMainTitle:mainTitle];
+    [self.view addSubview:_headerView];
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
@@ -87,27 +106,33 @@
 
 - (void)tableView
 {
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(20,64, kScreenWidth - 40, _dataSource.count*60 + 30) style:UITableViewStylePlain];
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(20,64+115, kScreenWidth - 40, _dataSource.count*60 + 30) style:UITableViewStylePlain];
     [_table setDelegate:self];
     [_table setDataSource:self];
+    [_table setSeparatorColor:[UIColor clearColor]];
     [self.view addSubview:_table];
 }
 
 - (CGFloat)tableHeight
 {
     CGFloat height = 0;
+    NSInteger index = 0;
     if (_dataSource && _dataSource.count != 0)
     {
-        height = _dataSource.count * 60;
+        for (NSArray * rowData in _dataSource)
+        {
+            index += rowData.count;
+        }
+        height = index*20;
     }
     else
     {
         return 0;
     }
     
-    if (height > (kScreenHeight-64))
+    if (height > (kScreenHeight-64-115))
     {
-        height=kScreenHeight-64;
+        height=kScreenHeight-64-115;
         [_table setScrollEnabled:YES];
     }
     else
@@ -120,41 +145,79 @@
 - (void)resetTableHeight
 {
     [UIView animateWithDuration:0.5 animations:^{
-        [_table setFrame:CGRectMake(20, 64, kScreenWidth-40, [self tableHeight])];
+        [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, [self tableHeight])];
     }];
 }
 
 - (void)reloadTableView
 {
     CGFloat height = 0;
+    NSInteger index = 0;
     if (_dataSource && _dataSource.count != 0)
     {
-        height = _dataSource.count * 60 + 30;
+        for (NSArray * rowData in _dataSource)
+        {
+            index += rowData.count;
+        }
+        height = index*20 + _dataSource.count * 30;
     }
     else
     {
         [UIView animateWithDuration:0.5 animations:^{
-            [_table setFrame:CGRectMake(20, 64, kScreenWidth-40, height)];
+            [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, height)];
         } completion:^(BOOL finished) {
             [_table reloadData];
         }];
         return;
     }
     
-    if (height > (kScreenHeight-64))
+    if (height > (kScreenHeight-64-115))
     {
-        height = kScreenHeight-64;
+        height = kScreenHeight-64-115;
         [_table setScrollEnabled:YES];
     }
     else
     {
         [_table setScrollEnabled:NO];
     }
-    [_table setFrame:CGRectMake(20, 64, kScreenWidth-40, height)];
+    [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, height)];
     [_table reloadData];
 }
 
 # pragma mark TableView Delegate
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    Record * record = [_dataSource[section] objectAtIndex:0];
+    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-40, 40)];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(36, 10, CGRectGetWidth(headerView.frame), 20)];
+    [label setText:[record.recordDate getMonthDayStringWithContrastion]];
+    [label setTextColor:[UIColor colorWithHexString:@"ce3330"]];
+    [label setFont:[UIFont systemFontOfSize:19.0f]];
+    [headerView addSubview:label];
+    return headerView;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView * footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-40, 30)];
+    [footerView setBackgroundColor:[UIColor whiteColor]];
+    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(36, 18, kScreenWidth-40-72, 1)];
+    [lineView setBackgroundColor:[UIColor colorWithHexString:@"C1C1C1" alpha:0.50f]];
+    [footerView addSubview:lineView];
+    return footerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 30.0f;
+}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -163,7 +226,8 @@
     {
         cell= [[[NSBundle mainBundle]loadNibNamed:@"RecordTableViewCell" owner:nil options:nil] firstObject];
     }
-    Record * record = _dataSource[indexPath.row];
+    NSArray * rowData = _dataSource[indexPath.section];
+    Record * record = rowData[indexPath.row];
     [cell setType:RecordTypeWeek];
     [cell setRecord:record];
     return cell;
@@ -171,14 +235,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60.0f;
+    return 25.0f;
 }
 
 # pragma mark TableView DataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _dataSource.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSArray * rowData = _dataSource[section];
+    return rowData.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -203,16 +273,5 @@
 {
     return @"删除";
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30.0f;
-}
-
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @" 😏 Shake It ？";
-}
-
 
 @end

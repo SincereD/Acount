@@ -11,7 +11,7 @@
 @interface NSDate (DateString)
 
 /**
- *  获取年月周
+ *  获取年月日
  *
  *  @return NSDictionary
  */
@@ -58,5 +58,23 @@
  *  @return NSString
  */
 - (NSString*)getMonthDayStringWithContrastion;
+
+/**
+ *  获取是第几周
+ *
+ *  @return NSString
+ */
+- (NSString*)getWeekdayOrdinal;
+
+/**
+ *  获取范围字符串 如 2016/01/12/ - 02/20
+ *
+ *  @param newlyDate 截止日期
+ *  @param olderDate 起始日期
+ *
+ *  @return NSString
+ */
+- (NSString*)getRangeStringWithDate:(NSDate*)newlyDate
+                               date:(NSDate*)olderDate;
 
 @end

@@ -56,17 +56,20 @@
 
 - (void)calculate
 {
-    for (Record * r in _recordArray)
+    for (NSArray * sepratedArray in _recordArray)
     {
-        if ([r.recordType isEqualToString:@"收入"])
+        for (Record * r in sepratedArray)
         {
-            _inComeCount ++;
-            _inCome += [r.recordNum floatValue];
-        }
-        else if ([r.recordType isEqualToString:@"支出"])
-        {
-            _outComeCount ++;
-            _outCome += [r.recordNum floatValue];
+            if ([r.recordType isEqualToString:@"收入"])
+            {
+                _inComeCount ++;
+                _inCome += [r.recordNum floatValue];
+            }
+            else if ([r.recordType isEqualToString:@"支出"])
+            {
+                _outComeCount ++;
+                _outCome += [r.recordNum floatValue];
+            }
         }
     }
     _total = _inCome + _outCome;
@@ -127,11 +130,11 @@
         UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth/3.2f, kScreenWidth/3.2f)];
         [label setText:title];
         [label setTextAlignment:NSTextAlignmentCenter];
-        [label setTextColor:[UIColor whiteColor]];
+        [label setTextColor:[UIColor blackColor]];
         [label.layer setCornerRadius:kScreenWidth/6.4f];
         [label.layer setMasksToBounds:YES];
         [label setNumberOfLines:0];
-        [label setBackgroundColor:[UIColor brownColor]];
+        [label setBackgroundColor:[UIColor whiteColor]];
         [label setCenter:CGPointMake(kScreenWidth/2.0f, kScreenHeight/2.0f)];
         [self.view addSubview:label];
         

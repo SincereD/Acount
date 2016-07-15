@@ -153,6 +153,76 @@ static RecordDataOperation * dataOperation;
     return needData;
 }
 
+//对周数据按照每天进行划分
+- (NSArray*)seprateWeekDataToDay:(NSArray*)weekData
+{
+    //输出返回值
+    NSMutableArray * result = [NSMutableArray arrayWithCapacity:0];
+    
+    //step 1 获取周几
+    NSMutableArray * sepratedData = [[NSMutableArray alloc] initWithCapacity:0];
+    for (Record * record in weekData)
+    {
+        NSString * key = [record.recordDate getWeekDayWithContrastion];
+        if (![sepratedData containsObject:key])
+        {
+            [sepratedData addObject:key];
+        }
+    }
+    
+    //step 2 根据已有的周几 进行筛选
+    
+    for (NSString * key in sepratedData)
+    {
+        NSMutableArray * seprateDayArry = [NSMutableArray arrayWithCapacity:0];
+        for ( Record * record in weekData)
+        {
+            // 获取每一天的数据
+            if ([[record.recordDate getWeekDayWithContrastion] isEqualToString:key])
+            {
+                [seprateDayArry addObject:record];
+            }
+        }
+        [result addObject:seprateDayArry];
+    }
+    return result;
+}
+
+//对月数据按照每周进行划分
+- (NSArray*)seprateMonthDataToWeek:(NSArray*)monthData
+{
+    //输出返回值
+    NSMutableArray * result = [NSMutableArray arrayWithCapacity:0];
+    
+    //step 1 获取日期
+    NSMutableArray * sepratedData = [[NSMutableArray alloc] initWithCapacity:0];
+    for (Record * record in monthData)
+    {
+        NSString * key = [record.recordDate getMonthDayStringWithContrastion];
+        if (![sepratedData containsObject:key])
+        {
+            [sepratedData addObject:key];
+        }
+    }
+    
+    //step 2 根据已有的日期 进行筛选
+    
+    for (NSString * key in sepratedData)
+    {
+        NSMutableArray * seprateDayArry = [NSMutableArray arrayWithCapacity:0];
+        for ( Record * record in monthData)
+        {
+            // 获取每一天的数据
+            if ([[record.recordDate getMonthDayStringWithContrastion] isEqualToString:key])
+            {
+                [seprateDayArry addObject:record];
+            }
+        }
+        [result addObject:seprateDayArry];
+    }
+    return result;
+}
+
 /**
  *  获取今天数据
  *
