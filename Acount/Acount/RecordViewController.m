@@ -18,10 +18,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTitle:@"添加收支"];
     [_ensureBtn.layer setCornerRadius:40.0f];
     [_ensureBtn.layer setMasksToBounds:YES];
     [_recordTypeSwitch setTintColor:[UIColor colorWithHexString:@"ce3330"]];
     [self addGesture];
+    [_segment setSelectedSegmentIndex:0];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"STHeitiSC-Medium" size:17.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"333333"]}];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithHexString:@"333333"]];
+}
+
+- (UIImageView *)findHairlineImageViewUnder:(UIView *)view {
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+        return (UIImageView *)view;
+    }
+    for (UIView *subview in view.subviews) {
+        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
+        if (imageView) {
+            return imageView;
+        }
+    }
+    return nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    UIImageView *navBarHairlineImageView;
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    navBarHairlineImageView.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    UIImageView *navBarHairlineImageView;
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    navBarHairlineImageView.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -76,9 +109,7 @@
     {
         [self.view endEditing:YES];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-            }];
+            [self.navigationController popViewControllerAnimated:YES];
         });
     }
     else
@@ -107,13 +138,18 @@
     }
 }
 
+- (IBAction)didSelectSegmentControl:(UISegmentedControl *)sender
+{
+    
+}
+
 - (NSManagedObject*)getRecord
 {
  
     NSManagedObject * record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:[[RecordDataOperation sharedDataOperation] managedObjectContext]];
     
     CGFloat cost =  fabsf([_recordNumTF.text floatValue]);
-    if (!_recordTypeSwitch.isOn)
+    if (_segment.selectedSegmentIndex == 0)
     {
         cost = -cost;
     }

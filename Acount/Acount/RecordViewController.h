@@ -15,8 +15,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *recordNumTF;
 @property (weak, nonatomic) IBOutlet UITextField *detailTF;
 @property (weak, nonatomic) IBOutlet UILabel *recordTypeLab;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 
 - (IBAction)backAction:(id)sender;
 - (IBAction)switchAction:(UISwitch *)sender;
+- (IBAction)didSelectSegmentControl:(UISegmentedControl *)sender;
 
 @end

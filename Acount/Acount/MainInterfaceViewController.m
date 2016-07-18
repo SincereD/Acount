@@ -313,9 +313,7 @@
 - (IBAction)recordAction:(id)sender
 {
     RecordViewController * recordVC = [[RecordViewController alloc] init];
-    [self presentViewController:recordVC animated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:recordVC animated:YES];
 }
 
 # pragma mark TableView Delegate
@@ -354,8 +352,6 @@
     Record * record = _dataSource[indexPath.row];
     RecordView * recordView = [[RecordView alloc] initWithRecord:record width:kScreenWidth];
     [cell addSubview:recordView];
-//    [cell setType:RecordTypeDay];
-//    [cell setRecord:record];
     return cell;
 }
 

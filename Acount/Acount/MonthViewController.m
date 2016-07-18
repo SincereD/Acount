@@ -139,7 +139,7 @@
     {
         [_table setScrollEnabled:NO];
     }
-    return height;
+    return kScreenHeight-64-115;
 }
 
 - (void)resetTableHeight

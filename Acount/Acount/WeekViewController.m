@@ -139,7 +139,7 @@
     {
         [_table setScrollEnabled:NO];
     }
-    return height;
+    return kScreenHeight - 64 - 115;
 }
 
 - (void)resetTableHeight
@@ -180,7 +180,7 @@
     {
         [_table setScrollEnabled:NO];
     }
-    [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, height)];
+    [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, kScreenHeight-64-115)];
     [_table reloadData];
 }
 
