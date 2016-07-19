@@ -272,6 +272,11 @@
 
 - (void)leftAction:(id)sender
 {
+    if (!_dataSource.count || _dataSource.count == 0)
+    {
+        [self showAlertWithContent:@"暂无记录"];
+        return;
+    }
     WeekViewController * weekVC = [[WeekViewController alloc] init];
     [self presentViewController:weekVC animated:YES completion:^{
         
@@ -280,10 +285,21 @@
 
 - (void)rightAction:(id)sender
 {
+    if (!_dataSource.count || _dataSource.count == 0)
+    {
+        [self showAlertWithContent:@"暂无记录"];
+        return;
+    }
     MonthViewController * monthVC = [[MonthViewController alloc] init];
     [self presentViewController:monthVC animated:YES completion:^{
         
     }];
+}
+
+- (void)showAlertWithContent:(NSString*)content
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:content delegate:nil cancelButtonTitle:nil otherButtonTitles:@"好的、", nil];
+    [alert show];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue

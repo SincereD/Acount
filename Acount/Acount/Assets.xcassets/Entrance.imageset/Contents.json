@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Entrance.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Entrance@2x.png",
       "scale" : "2x"
     },
     {
