@@ -86,7 +86,7 @@
 {
     UILabel * titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 100, 44)];
     [titleLab setTextColor:[UIColor whiteColor]];
-    [titleLab setText:@"本周收支"];
+    [titleLab setText:@"本月收支"];
     [self.view addSubview:titleLab];
     
     UIButton * dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -127,17 +127,13 @@
     }
     else
     {
-        return 0;
+        return kScreenHeight-64-115;
     }
     
-    if (height > (kScreenHeight-64-115))
+    if (height >= (kScreenHeight-64-115))
     {
-        height=kScreenHeight-64-115;
+        height = kScreenHeight-64-115;
         [_table setScrollEnabled:YES];
-    }
-    else
-    {
-        [_table setScrollEnabled:NO];
     }
     return kScreenHeight-64-115;
 }
@@ -164,7 +160,7 @@
     else
     {
         [UIView animateWithDuration:0.5 animations:^{
-            [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, height)];
+            [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, [self tableHeight])];
         } completion:^(BOOL finished) {
             [_table reloadData];
         }];
@@ -180,7 +176,7 @@
     {
         [_table setScrollEnabled:NO];
     }
-    [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, height)];
+    [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, [self tableHeight])];
     [_table reloadData];
 }
 

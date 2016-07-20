@@ -171,14 +171,9 @@
         return;
     }
     
-    if (height > (kScreenHeight-64-115))
+    if (height >= (kScreenHeight-64-115))
     {
         height = kScreenHeight-64-115;
-        [_table setScrollEnabled:YES];
-    }
-    else
-    {
-        [_table setScrollEnabled:NO];
     }
     [_table setFrame:CGRectMake(20, 64+115, kScreenWidth-40, kScreenHeight-64-115)];
     [_table reloadData];
