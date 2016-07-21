@@ -168,7 +168,7 @@
     [record setValue:[NSString stringWithFormat:@"%d",(int)day] forKey:@"day"];
     [record setValue:[NSNumber numberWithFloat:cost] forKey:@"recordNum"];
     [record setValue:date forKey:@"recordDate"];
-    [record setValue:_recordTypeSwitch.isOn?@"收入":@"支出" forKey:@"recordType"];
+    [record setValue:cost>0?@"收入":@"支出" forKey:@"recordType"];
     [record setValue:_detailTF.text forKey:@"detail"];
     return record;
 }

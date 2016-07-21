@@ -69,7 +69,19 @@
 
     if (fabs(_currentNum - _targetNum)>0.001)
     {
-        if (fabs(_currentNum - _targetNum)>1)
+        if (fabs(_currentNum - _targetNum)>5000)
+        {
+            _currentNum += 1000 * index;
+        }
+        else if (fabs(_currentNum - _targetNum)>1000)
+        {
+            _currentNum += 100 * index;
+        }
+        else if (fabs(_currentNum - _targetNum)>100)
+        {
+            _currentNum += 10 * index;
+        }
+        else if (fabs(_currentNum - _targetNum)>10)
         {
             _currentNum += 1 * index;
         }
@@ -82,6 +94,23 @@
     {
         _priceLab.text = [NSString stringWithFormat:@"%.2f",_targetNum];
         [theTimerP invalidate];
+    }
+}
+
+- (CGFloat)calugateIndexWithCurrentNum:(CGFloat)currentNum
+                             targetNum:(CGFloat)targetNum
+{
+    CGFloat index = fabs(currentNum - targetNum);
+    if (index>500)
+    {
+        return 100;
+    }
+    else if(index>200)
+    {
+        return 10;
+    }
+    else{
+        return 1;
     }
 }
 
